@@ -16,11 +16,7 @@ output:
     base_format: rmarkdown::html_vignette
     number_sections: no
     math_method: katex
-    includes:
-      in_header:
-      - auto-number-sec-js.html
 link-citations: yes
-bibliography: Using_RCircos-generated.bib
 ---
 
 ::: article
@@ -34,7 +30,7 @@ concordance=TRUE
 
 ## Introduction
 
-The RCircos package provides a set of graphic functions which implement basic Circos 2D track plot [@Krzywinski] for visualizing similarities and differences of genome structure and positional relationships between genomic intervals. The package is implemented with R graphics package that comes with R base installation and aimed to reduce the complexity of usage and increase the flexibility in integrating into other R pipelines of genomic data processing.\
+The RCircos package provides a set of graphic functions which implement basic Circos 2D track plot [Krzywinski] for visualizing similarities and differences of genome structure and positional relationships between genomic intervals. The package is implemented with R graphics package that comes with R base installation and aimed to reduce the complexity of usage and increase the flexibility in integrating into other R pipelines of genomic data processing.\
 \
 Currently, following graphic functions are provided:
 
