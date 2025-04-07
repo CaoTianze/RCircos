@@ -93,7 +93,7 @@ RCircos follows the same algorithm of Circos plot and arranges data plots in tra
 \
 The figure below shows a human chromosome ideogram plus three empty tracks arranged in both inside and outside of chromosome ideogram.
 
-![graphic without alt text](RCircosLayoutDemo.png){width="100%"}
+![image](RCircosLayoutDemo.png){width="100%" alt="graphic without alt text"}
 
 ## Getting Started: Initialize RCircos core components first
 
@@ -323,7 +323,7 @@ pdf(file=out.file, height=8, width=8, compress=TRUE);
 RCircos.Set.Plot.Area();
 ```
 
-Note: RCircos.Set.Plot.Area() will setup plot area base on total number of tracks inside and outside of chromosome ideogram. User can also setup plot area by summit the R plot commands for user defined plot area, for [[example:\\\\](example:\\){.uri}]([example:\\](example:\){.uri}){.uri}
+Note: RCircos.Set.Plot.Area() will setup plot area base on total number of tracks inside and outside of chromosome ideogram. User can also setup plot area by summit the R plot commands for user defined plot area, for example:
 
 ```{r eval=FALSE}
 par(mai=c(0.25, 0.25, 0.25, 0.25));
