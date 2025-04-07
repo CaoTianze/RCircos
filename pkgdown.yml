@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   RCircos: RCircos.html
-last_built: 2025-04-07T04:45Z
+last_built: 2025-04-07T04:52Z
 urls:
   reference: https://caotianze.github.io/RCircos/reference
   article: https://caotianze.github.io/RCircos/articles
