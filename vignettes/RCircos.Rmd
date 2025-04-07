@@ -19,8 +19,6 @@ output:
 link-citations: yes
 ---
 
-::: article
-
 ```{r include=FALSE}
 library(knitr)
 opts_chunk$set(
