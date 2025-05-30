@@ -1844,7 +1844,7 @@ RCircos.Area.Plot <- function(area.data=NULL, data.col=c(4,5), track.num=NULL,
         stop("Missing or incorrect genomic data in RCircos.Point.Plot().\n");
     if( genomic.columns < 2 || genomic.columns > 3) 
         stop("Incorrect number of columns for genomic position.\n");
-    if(data.col <= genomic.columns || !is.numeric(data.col))  
+    if(any(data.col <= genomic.columns) || !is.numeric(data.col))  
         stop("Plot data column must be ", genomic.columns+1, " or greater.\n");
     if(plot.type == "band" && length(data.col) != 2)
             stop("Two columns of data required to plot band.\n");
