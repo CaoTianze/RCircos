@@ -2,9 +2,8 @@
 title: Using the RCircos Package
 abstract: ~
 author: |
-  Hongen Zhang, Ph.D.\
-  Genetics Branch, Center for Cancer Research,\
-  National Cancer Institute, NIH
+  Authors: Hongen Zhang\  
+  Reviser: Tianze Cao
 date: '2025-04-07'
 vignette: |-
   %\VignetteEngine{knitr::rmarkdown}
@@ -93,7 +92,7 @@ RCircos follows the same algorithm of Circos plot and arranges data plots in tra
 \
 The figure below shows a human chromosome ideogram plus three empty tracks arranged in both inside and outside of chromosome ideogram.
 
-![image](RCircosLayoutDemo.png){width="100%" alt="graphic without alt text"}
+![graphic without alt text](RCircosLayoutDemo.png){width="100%"}
 
 ## Getting Started: Initialize RCircos core components first
 

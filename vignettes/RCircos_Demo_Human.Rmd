@@ -2,9 +2,8 @@
 title: 1 RCircos plot with human genomic data
 abstract: ~
 author: |
-  Hongen Zhang, Ph.D.\
-  Genetics Branch, Center for Cancer Research,\
-  National Cancer Institute, NIH
+  Authors: Hongen Zhang\  
+  Reviser: Tianze Cao
 date: '2025-06-04'
 vignette: |-
   %\VignetteEngine{knitr::rmarkdown}
