@@ -11,8 +11,11 @@ Online documentation
 -   [Documentation](https://caotianze.github.io/RCircos/reference/index.html)
 
 Installation
-```R
+
+``` r
 if (!requireNamespace("devtools", quietly=TRUE))
     install.packages("devtools")
 devtools::install_github("CaoTianze/RCircos")
 ```
+
+License: GPL (\>=2)
