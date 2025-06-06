@@ -12,9 +12,9 @@ vignette: |-
   %\VignetteDepends{RCircos}
 output:
   bookdown::html_document2:
-base_format: rmarkdown::html_vignette
-number_sections: no
-math_method: katex
+    base_format: rmarkdown::html_vignette
+    number_sections: no
+    math_method: katex
 link-citations: yes
 ---
 
