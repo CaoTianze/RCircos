@@ -36,9 +36,9 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/Demo_Mouse_And_Rat.html">2 RCircos plot with both mouse and rat gene expression data</a></li>
-    <li><a class="dropdown-item" href="articles/Gene_Connector_Demo.html">3 RCircos plot of connectors and gene names</a></li>
-    <li><a class="dropdown-item" href="articles/RCircos_Demo_Human.html">1 RCircos plot with human genomic data</a></li>
+<li><a class="dropdown-item" href="articles/1%20Demo_Human.html">1 RCircos plot with human genomic data</a></li>
+    <li><a class="dropdown-item" href="articles/2%20Demo_Mouse_And_Rat.html">2 RCircos plot with both mouse and rat gene expression data</a></li>
+    <li><a class="dropdown-item" href="articles/3%20Gene_Connector_Demo.html">3 RCircos plot of connectors and gene names</a></li>
   </ul>
 </li>
       </ul>
@@ -57,11 +57,22 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="rcircos-r-package-for-circos-2d-track-plot">RCircos: R package for Circos 2D track plot<a class="anchor" aria-label="anchor" href="#rcircos-r-package-for-circos-2d-track-plot"></a>
 </h1></div>
-<p>The RCircos is a personal forked version</p>
+<p>The RCircos is a personal forked version. We’ve made some improvements to the original code, as follows:</p>
+<ul>
+<li>Bug fixes</li>
+<li>Make documentation available online</li>
+</ul>
+<p>Online documentation</p>
 <ul>
 <li><a href="https://caotianze.github.io/RCircos/articles/RCircos.html">Get started</a></li>
 <li><a href="https://caotianze.github.io/RCircos/reference/index.html">Documentation</a></li>
 </ul>
+<p>Installation</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"devtools"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"CaoTianze/RCircos"</span><span class="op">)</span></span></code></pre></div>
+<p>License: GPL (&gt;=2)</p>
 </div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
@@ -89,7 +100,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Hongen Zhang <br><small class="roles"> Maintainer </small>   </li>
+<li>Tianze Cao <br><small class="roles"> Maintainer </small>   </li>
 </ul>
 </div>
 
@@ -100,7 +111,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Hongen Zhang.</p>
+  <p>Developed by Tianze Cao.</p>
 </div>
 
 <div class="pkgdown-footer-right">
