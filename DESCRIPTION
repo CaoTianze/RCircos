@@ -4,7 +4,7 @@ Title: Circos 2D Track Plot
 Version: 1.2.2
 Date: 2021-12-14
 Author: Hongen Zhang
-Maintainer: Hongen Zhang <hzhang.henry@gmail.com>
+Maintainer: Tianze Cao <hnrcao@qq.com>
 Description: A simple and flexible way to generate Circos 2D track plot
     images for genomic data visualization is implemented in this package.
     The types of plots include: heatmap, histogram, lines, scatterplot,
