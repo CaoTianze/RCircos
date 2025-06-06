@@ -17,13 +17,11 @@ output:
     math_method: katex
 link-citations: yes
 ---
-#   This demo draw chromosome ideogram with padding area between 
-#   chromosomes, highlights, and chromosome names, label gene names 
-#   in the second data track and put connectors between chromosome 
-#   ideogram and gene names.
 
-#   Load RCircos package and defined parameters
+This demo draw chromosome ideogram with padding area between chromosomes, highlights, and chromosome names, label gene names in the second data track and put connectors between chromosome ideogram and gene names.
+
 ```{r}
+# Load RCircos package and defined parameters
 library(RCircos);
 
 #   Load gene label data and human cytoband data 
@@ -82,4 +80,3 @@ RCircos.Gene.Name.Plot(gene.data, name.col, track.num, direction);
 
 message("R Circos Demo Done ...\n\n");
 ```
-
