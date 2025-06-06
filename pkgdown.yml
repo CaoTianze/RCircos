@@ -3,9 +3,10 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   Demo_Mouse_And_Rat: Demo_Mouse_And_Rat.html
+  Gene_Connector_Demo: Gene_Connector_Demo.html
   RCircos_Demo_Human: RCircos_Demo_Human.html
   RCircos: RCircos.html
-last_built: 2025-06-06T01:20Z
+last_built: 2025-06-06T01:32Z
 urls:
   reference: https://caotianze.github.io/RCircos/reference
   article: https://caotianze.github.io/RCircos/articles
