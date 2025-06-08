@@ -3,11 +3,22 @@ pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   1 Demo_Human: 1 Demo_Human.html
+  10 Ribbon_Plot_Demo: 10 Ribbon_Plot_Demo.html
+  11 Scatter_Plot_Demo: 11 Scatter_Plot_Demo.html
+  12 Chromosome_Tick_Demo: 12 Chromosome_Tick_Demo.html
+  13 Tile_Plot_Demo: 13 Tile_Plot_Demo.html
+  14 Area_Plot_Demo: 14 Area_Plot_Demo.html
+  15 Zoom_Plot_Demo: 15 Zoom_Plot_Demo.html
   2 Demo_Mouse_And_Rat: 2 Demo_Mouse_And_Rat.html
   3 Gene_Connector_Demo: 3 Gene_Connector_Demo.html
   4 Heatmap_Demo: 4 Heatmap_Demo.html
+  5 Histogram_Demo: 5 Histogram_Demo.html
+  6 Layout_Demo: 6 Layout_Demo.html
+  7 Line_Plot_Demo: 7 Line_Plot_Demo.html
+  8 Link_Plot_Demo: 8 Link_Plot_Demo.html
+  9 Polygon_Plot_Demo: 9 Polygon_Plot_Demo.html
   RCircos: RCircos.html
-last_built: 2025-06-08T07:28Z
+last_built: 2025-06-08T07:41Z
 urls:
   reference: https://caotianze.github.io/RCircos/reference
   article: https://caotianze.github.io/RCircos/articles
