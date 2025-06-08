@@ -5,8 +5,9 @@ articles:
   1 Demo_Human: 1 Demo_Human.html
   2 Demo_Mouse_And_Rat: 2 Demo_Mouse_And_Rat.html
   3 Gene_Connector_Demo: 3 Gene_Connector_Demo.html
+  4 Heatmap_Demo: 4 Heatmap_Demo.html
   RCircos: RCircos.html
-last_built: 2025-06-06T07:06Z
+last_built: 2025-06-08T07:28Z
 urls:
   reference: https://caotianze.github.io/RCircos/reference
   article: https://caotianze.github.io/RCircos/articles
