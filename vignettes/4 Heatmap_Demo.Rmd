@@ -17,80 +17,44 @@ output:
     math_method: katex
 link-citations: yes
 ---
-    #
-    #   This demo draw chromosome ideogram with padding between 
-    #   chromosomes, highlights, chromosome names, and heatmap 
-    #   with gene expression data.
-    #
-    #   Usage:
-    #
-    #   library(RCircos);
-    #   demo("RCircos.Heatmap.Demo");
-    #   ______________________________________________________________________
-    #   <RCircos DEMO><RCircos DEMO><RCircos DEMO><RCircos DEMO><RCircos DEMO>
 
+This demo draw chromosome ideogram with padding between chromosomes, highlights, chromosome names, and heatmap with gene expression data.
 
+```{r}
+#   Load RCircos library
 
-    #   Load RCircos library
-    #   _________________________________________________________________
-    #   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+library(RCircos);
 
-    library(RCircos);
+#   Load human cytoband data and gene expression data
+data(RCircos.Heatmap.Data);
+data(UCSC.HG19.Human.CytoBandIdeogram);
+cyto.info <- UCSC.HG19.Human.CytoBandIdeogram;
 
+#   Setup RCircos core components:
 
-    #   Load human cytoband data and gene expression data
-    #   _________________________________________________________________
-    #   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+RCircos.Set.Core.Components(cyto.info, NULL, 5, 0);
 
-    data(RCircos.Heatmap.Data);
-    data(UCSC.HG19.Human.CytoBandIdeogram);
-    cyto.info <- UCSC.HG19.Human.CytoBandIdeogram;
+#   Open the graphic device (here a pdf file)
 
+RCircos.Set.Plot.Area();
 
-    #   Setup RCircos core components:
-    #   _________________________________________________________________
-    #   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#   Draw chromosome ideogram
 
-    RCircos.Set.Core.Components(cyto.info, NULL, 5, 0);
+message("Draw chromosome ideogram ...\n");
 
+RCircos.Chromosome.Ideogram.Plot();
+title("RCircos Heatmap Plot Demo");
 
-    #   Open the graphic device (here a pdf file)
-    #   _________________________________________________________________
-    #   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#   Plot five tracks of heatmap
 
-    out.file <- "RCircos.Heatmap.Demo.pdf";
-    pdf(file=out.file, height=8, width=8);
+total.track <- 5;
+for(a.track in 1:total.track)
+{
+    data.col <- a.track + 4;
+    RCircos.Heatmap.Plot(RCircos.Heatmap.Data, data.col, a.track, "in");
+}
 
-    RCircos.Set.Plot.Area();
+#   Close the graphic device
 
-
-    #   Draw chromosome ideogram
-    #   _________________________________________________________________
-    #   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-    message("Draw chromosome ideogram ...\n");
-
-    RCircos.Chromosome.Ideogram.Plot();
-    title("RCircos Heatmap Plot Demo");
-
-
-
-    #   Plot five tracks of heatmap
-    #   _________________________________________________________________
-    #   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-    total.track <- 5;
-    for(a.track in 1:total.track)
-    {
-        data.col <- a.track + 4;
-        RCircos.Heatmap.Plot(RCircos.Heatmap.Data, data.col, a.track, "in");
-    }
-
-
-    #   Close the graphic device
-    #   _________________________________________________________________
-    #   xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-    dev.off();
-    message("RCircos Heatmap demo done!\n");
-
+message("RCircos Heatmap demo done!\n");
+```
