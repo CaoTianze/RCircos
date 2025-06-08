@@ -1,0 +1,19 @@
+---
+title: 
+abstract: ~
+author: |
+  Authors: Hongen Zhang\  
+  Reviser: Tianze Cao
+date: '2025-06-05'
+vignette: |-
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{RCircos_Demo_Human}
+  %\VignetteDepends{RCircos}
+output:
+  bookdown::html_document2:
+    base_format: rmarkdown::html_vignette
+    number_sections: no
+    math_method: katex
+link-citations: yes
+---
