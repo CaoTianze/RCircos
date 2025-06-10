@@ -17,7 +17,12 @@ output:
     math_method: katex
 link-citations: yes
 ---
-
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(
+concordance=TRUE
+)
+```
 This demo draw chromosome ideogram with padding between\
 chromosomes, highlights, chromosome names, and three empty tracks inside and outside of chromosome ideogram.
 

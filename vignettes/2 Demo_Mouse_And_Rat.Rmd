@@ -17,7 +17,12 @@ output:
     math_method: katex
 link-citations: yes
 ---
-
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(
+concordance=TRUE
+)
+```
 This demo draws a heatmap with both mouse and rat gene expresion 
 data and links between same genes. 
 

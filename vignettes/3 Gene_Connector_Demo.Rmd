@@ -17,7 +17,12 @@ output:
     math_method: katex
 link-citations: yes
 ---
-
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(
+concordance=TRUE
+)
+```
 This demo draw chromosome ideogram with padding area between chromosomes, highlights, and chromosome names, label gene names in the second data track and put connectors between chromosome ideogram and gene names.
 
 ```{r}
