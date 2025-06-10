@@ -17,3 +17,61 @@ output:
     math_method: katex
 link-citations: yes
 ---
+
+This demo draw chromosome ideogram with padding between chromosomes, highlights, chromosome names, and histogram.
+
+```{r}
+#  Load RCircos package and defined parameters
+
+library(RCircos);
+
+#  Load human cytoband data and gene expression data
+
+data(RCircos.Polygon.Data);
+data(UCSC.HG19.Human.CytoBandIdeogram);
+cyto.info <- UCSC.HG19.Human.CytoBandIdeogram;
+
+#  Setup RCircos core components:
+
+RCircos.Set.Core.Components(cyto.info, NULL, 10, 10);
+
+RCircos.Set.Plot.Area();
+
+
+#  Draw chromosome ideogram
+
+message("Draw chromosome ideogram ...\n");
+
+RCircos.Chromosome.Ideogram.Plot();
+title("RCircos Polygon Plot Demo");
+
+
+#  Plot histogram Inside of chromosome ideogram
+
+polygon.data <- RCircos.Polygon.Data;
+RCircos.Polygon.Plot(polygon.data, track.num=NULL, data.col=4,
+    genomic.columns=3, side="in", inside.pos=1.6, outside.pos=1.8, 
+    border.col="black", polygon.col="red", is.sorted=TRUE)
+
+polygon.data$Data <- polygon.data$Data*-1
+RCircos.Polygon.Plot(polygon.data, track.num=NULL, data.col=4,
+    genomic.columns=3, side="in", inside.pos=1.3, outside.pos=1.5, 
+    border.col="black", polygon.col="green", is.sorted=TRUE)
+
+rows <- seq(1, 77, by=2)
+
+plot.colors <- rep("red", nrow(polygon.data))
+plot.colors[rows] <- "green"
+polygon.data["PlotColor"] <- plot.colors
+polygon.data$Data[rows] <- polygon.data$Data[rows]*-1
+
+RCircos.Polygon.Plot(polygon.data, track.num=NULL, data.col=4,
+    genomic.columns=3, side="in", inside.pos=0.8, outside.pos=1.2, 
+    border.col="black", polygon.col=NULL, is.sorted=TRUE)
+
+title("RCircos Polygon Plot Demo")
+
+#  Close the graphic device and clear memory
+
+message("RCircos Polygon Plot Demo Done!");
+```
