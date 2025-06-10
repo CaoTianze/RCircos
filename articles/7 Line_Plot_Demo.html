@@ -83,7 +83,58 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 
     
     
-
+<p>This demo draw chromosome ideogram with padding between chromosomes,
+highlights, chromosome names, and line plot.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#  Load RCircos library</span></span>
+<span></span>
+<span>    <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/caotianze/RCircos" class="external-link">RCircos</a></span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#  Load human cytoband data and line plot data</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">RCircos.Line.Data</span><span class="op">)</span>;</span>
+<span><span class="va">RCircos.Line.Data</span><span class="op">$</span><span class="va">chromosome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>, </span>
+<span>      <span class="va">RCircos.Line.Data</span><span class="op">$</span><span class="va">chromosome</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">UCSC.HG19.Human.CytoBandIdeogram</span><span class="op">)</span>;</span>
+<span><span class="va">cyto.info</span> <span class="op">&lt;-</span> <span class="va">UCSC.HG19.Human.CytoBandIdeogram</span>;</span>
+<span></span>
+<span><span class="co">#  Setup RCircos core components:</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Set.Core.Components.html">RCircos.Set.Core.Components</a></span><span class="op">(</span><span class="va">cyto.info</span>, <span class="cn">NULL</span>, <span class="fl">10</span>, <span class="fl">0</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## RCircos.Core.Components initialized.</span></span>
+<span><span class="co">## Type ?RCircos.Reset.Plot.Parameters to see how to modify the core components.</span></span></code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Set.Plot.Area.html">RCircos.Set.Plot.Area</a></span><span class="op">(</span><span class="op">)</span>;</span>
+<span></span>
+<span></span>
+<span><span class="co">#  Draw chromosome ideogram</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Draw chromosome ideogram ...\n"</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## Draw chromosome ideogram ...</span></span></code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Chromosome.Ideogram.Plot.html">RCircos.Chromosome.Ideogram.Plot</a></span><span class="op">(</span><span class="op">)</span>;</span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"RCircos Line Plot Demo"</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#  Plot lines</span></span>
+<span></span>
+<span><span class="va">line.data</span> <span class="op">&lt;-</span> <span class="va">RCircos.Line.Data</span>;</span>
+<span><span class="va">line.colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">line.data</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">rows</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html" class="external-link">which</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">line.data</span><span class="op">$</span><span class="va">seg.mean</span><span class="op">)</span><span class="op">&gt;=</span><span class="fl">1.5</span><span class="op">)</span>;</span>
+<span><span class="va">line.colors</span><span class="op">[</span><span class="va">rows</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"red"</span>;</span>
+<span><span class="va">line.data</span><span class="op">[</span><span class="st">"PlotColor"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">line.colors</span>;</span>
+<span></span>
+<span><span class="va">data.col</span> <span class="op">&lt;-</span> <span class="fl">5</span>; </span>
+<span><span class="va">track.num</span> <span class="op">&lt;-</span> <span class="fl">1</span>;</span>
+<span><span class="va">direction</span> <span class="op">&lt;-</span> <span class="st">"in"</span>;</span>
+<span><span class="fu"><a href="../reference/RCircos.Line.Plot.html">RCircos.Line.Plot</a></span><span class="op">(</span><span class="va">line.data</span>, <span class="va">data.col</span>, <span class="va">track.num</span>, <span class="st">"in"</span><span class="op">)</span>;</span></code></pre></div>
+<p><img src="7%20Line_Plot_Demo_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#  Close the graphic device and clear memory</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"RCircos Line Plot Demo Done!"</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## RCircos Line Plot Demo Done!</span></span></code></pre>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>

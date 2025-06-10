@@ -83,7 +83,68 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 
     
     
-
+<p>This demo draw chromosome ideogram with padding between<br>
+chromosomes, highlights, chromosome names, and three empty tracks inside
+and outside of chromosome ideogram.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#   Load RCircos library</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/caotianze/RCircos" class="external-link">RCircos</a></span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#   Load human cytoband data </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">UCSC.HG19.Human.CytoBandIdeogram</span><span class="op">)</span>;</span>
+<span><span class="va">cyto.info</span> <span class="op">&lt;-</span> <span class="va">UCSC.HG19.Human.CytoBandIdeogram</span>;</span>
+<span></span>
+<span><span class="co">#   Setup RCircos core components:</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Set.Core.Components.html">RCircos.Set.Core.Components</a></span><span class="op">(</span><span class="va">cyto.info</span>, <span class="cn">NULL</span>, <span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## RCircos.Core.Components initialized.</span></span>
+<span><span class="co">## Type ?RCircos.Reset.Plot.Parameters to see how to modify the core components.</span></span></code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#   Open the graphic device (here a pdf file)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Set.Plot.Area.html">RCircos.Set.Plot.Area</a></span><span class="op">(</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#   Draw chromosome ideogram</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Draw chromosome ideogram ...\n"</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## Draw chromosome ideogram ...</span></span></code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Chromosome.Ideogram.Plot.html">RCircos.Chromosome.Ideogram.Plot</a></span><span class="op">(</span><span class="op">)</span>;</span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"R Circos Layout Demo"</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#   Marking plot areas both inside and outside of</span></span>
+<span><span class="co">#   chromosome ideogram ( 3 for each)</span></span>
+<span><span class="co">#   ********************************************</span></span>
+<span><span class="va">total.track</span> <span class="op">&lt;-</span> <span class="fl">3</span>;</span>
+<span><span class="va">subtrack</span> <span class="op">&lt;-</span> <span class="fl">5</span>;</span>
+<span></span>
+<span><span class="co">#   Outside of chromosome ideogram</span></span>
+<span></span>
+<span><span class="va">RCircos.Par</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/RCircos.Get.Core.Components.html">RCircos.Get.Plot.Parameters</a></span><span class="op">(</span><span class="op">)</span>;</span>
+<span><span class="va">one.track</span> <span class="op">&lt;-</span> <span class="va">RCircos.Par</span><span class="op">$</span><span class="va">track.height</span> <span class="op">+</span> <span class="va">RCircos.Par</span><span class="op">$</span><span class="va">track.padding</span>;</span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">a.track</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">total.track</span><span class="op">)</span></span>
+<span><span class="op">{</span>   </span>
+<span>    <span class="va">in.pos</span>    <span class="op">&lt;-</span> <span class="va">RCircos.Par</span><span class="op">$</span><span class="va">track.out.start</span>  <span class="op">+</span> <span class="op">(</span><span class="va">a.track</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">one.track</span>;</span>
+<span>    <span class="va">out.pos</span> <span class="op">&lt;-</span> <span class="va">in.pos</span> <span class="op">+</span> <span class="va">RCircos.Par</span><span class="op">$</span><span class="va">track.height</span>;</span>
+<span>    <span class="fu"><a href="../reference/RCircos.Track.Outline.html">RCircos.Track.Outline</a></span><span class="op">(</span><span class="va">out.pos</span>, <span class="va">in.pos</span>, <span class="va">subtrack</span><span class="op">)</span>;</span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co">#   Inside of chromosome ideogram</span></span>
+<span></span>
+<span><span class="kw">for</span><span class="op">(</span><span class="va">a.track</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">total.track</span><span class="op">)</span></span>
+<span><span class="op">{</span></span>
+<span>    <span class="va">out.pos</span> <span class="op">&lt;-</span> <span class="va">RCircos.Par</span><span class="op">$</span><span class="va">track.in.start</span>  <span class="op">-</span> <span class="op">(</span><span class="va">a.track</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="va">one.track</span>;</span>
+<span>    <span class="va">in.pos</span>    <span class="op">&lt;-</span> <span class="va">out.pos</span> <span class="op">-</span> <span class="va">RCircos.Par</span><span class="op">$</span><span class="va">track.height</span>;</span>
+<span>    <span class="fu"><a href="../reference/RCircos.Track.Outline.html">RCircos.Track.Outline</a></span><span class="op">(</span><span class="va">out.pos</span>, <span class="va">in.pos</span>, <span class="va">subtrack</span><span class="op">)</span>;</span>
+<span><span class="op">}</span></span></code></pre></div>
+<p><img src="6%20Layout_Demo_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"RCircos Layout Demo Done!"</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## RCircos Layout Demo Done!</span></span></code></pre>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>

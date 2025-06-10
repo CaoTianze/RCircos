@@ -83,7 +83,51 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 
     
     
-
+<p>RCircos area plot demo</p>
+<p>This demo draw chromosome ideogram with ticks, and use histogram data
+to make histogram plot and area plots (“mountain”, “curtain”, and
+“band”).</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#   Load RCircos package</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/caotianze/RCircos" class="external-link">RCircos</a></span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#   Load chromosome ideogram data and histogram plot data then </span></span>
+<span><span class="co">#   set up RCircos core components</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"UCSC.HG19.Human.CytoBandIdeogram"</span><span class="op">)</span>;</span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"RCircos.Histogram.Data"</span><span class="op">)</span>;</span>
+<span><span class="fu"><a href="../reference/RCircos.Set.Core.Components.html">RCircos.Set.Core.Components</a></span><span class="op">(</span><span class="va">UCSC.HG19.Human.CytoBandIdeogram</span>, </span>
+<span>        chr.exclude<span class="op">=</span><span class="cn">NULL</span>, tracks.inside<span class="op">=</span><span class="fl">10</span>, tracks.outside<span class="op">=</span><span class="fl">5</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## RCircos.Core.Components initialized.</span></span>
+<span><span class="co">## Type ?RCircos.Reset.Plot.Parameters to see how to modify the core components.</span></span></code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Set.Plot.Area.html">RCircos.Set.Plot.Area</a></span><span class="op">(</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#   plot chromosome ideogram and histogram </span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Chromosome.Ideogram.Plot.html">RCircos.Chromosome.Ideogram.Plot</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/RCircos.Histogram.Plot.html">RCircos.Histogram.Plot</a></span><span class="op">(</span><span class="va">RCircos.Histogram.Data</span>, data.col<span class="op">=</span><span class="fl">4</span>, </span>
+<span>    inside.pos<span class="op">=</span><span class="fl">1.59</span>, outside.pos<span class="op">=</span><span class="fl">1.89</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#   Area plot (mountain, curtain, and band)</span></span>
+<span><span class="va">area.data</span> <span class="op">&lt;-</span> <span class="va">RCircos.Histogram.Data</span>;</span>
+<span><span class="va">adj.value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">area.data</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0.4</span><span class="op">)</span></span>
+<span><span class="va">area.data</span><span class="op">[</span><span class="st">"DataT"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="va">adj.value</span></span>
+<span><span class="va">area.data</span><span class="op">[</span><span class="st">"DataB"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0.5</span> <span class="op">-</span> <span class="va">adj.value</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Area.Plot.html">RCircos.Area.Plot</a></span><span class="op">(</span><span class="va">area.data</span>, data.col<span class="op">=</span><span class="fl">4</span>, plot.type<span class="op">=</span><span class="st">"mountain"</span>, </span>
+<span>    inside.pos<span class="op">=</span><span class="fl">1.2</span>, outside.pos<span class="op">=</span><span class="fl">1.5</span>, is.sorted<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Area.Plot.html">RCircos.Area.Plot</a></span><span class="op">(</span><span class="va">area.data</span>, data.col<span class="op">=</span><span class="fl">4</span>, plot.type<span class="op">=</span><span class="st">"curtain"</span>, </span>
+<span>    inside.pos<span class="op">=</span><span class="fl">0.9</span>, outside.pos<span class="op">=</span><span class="fl">1.1</span>, is.sorted<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Area.Plot.html">RCircos.Area.Plot</a></span><span class="op">(</span><span class="va">area.data</span>, data.col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">6</span><span class="op">)</span>, plot.type<span class="op">=</span><span class="st">"band"</span>, </span>
+<span>    inside.pos<span class="op">=</span><span class="fl">0.4</span>, outside.pos<span class="op">=</span><span class="fl">0.7</span>, is.sorted<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"RCircos Area Plot Demo"</span><span class="op">)</span>;</span></code></pre></div>
+<p><img src="14%20Area_Plot_Demo_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>

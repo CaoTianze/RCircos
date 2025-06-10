@@ -83,7 +83,39 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 
     
     
-
+<p>This demo draw human chromosome ideogram with ticks. Since in most
+cases ticks are not necessary for data presentation, we add ticks to
+existing ideogram instead of plotting an ideogram with ticks.</p>
+<p>Set 20 tracks inside of chromosome ideogram to get enough space for
+all chromosomes with ticks in 5MB interval</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#   Load RCircos package</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/caotianze/RCircos" class="external-link">RCircos</a></span><span class="op">)</span>;</span>
+<span></span>
+<span><span class="co">#   Load human cytoband data </span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">UCSC.HG19.Human.CytoBandIdeogram</span><span class="op">)</span>;</span>
+<span><span class="va">hg19.cyto</span> <span class="op">&lt;-</span> <span class="va">UCSC.HG19.Human.CytoBandIdeogram</span>;</span>
+<span></span>
+<span><span class="co">#   Set 10 tracks in outside of chromosome ideogram to get enough </span></span>
+<span><span class="co">#   space for all chromosomes ticks in 10 MB interval</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Set.Core.Components.html">RCircos.Set.Core.Components</a></span><span class="op">(</span>cyto.info<span class="op">=</span><span class="va">hg19.cyto</span>, chr.exclude<span class="op">=</span><span class="cn">NULL</span>, </span>
+<span>        tracks.inside<span class="op">=</span><span class="fl">10</span>, tracks.outside<span class="op">=</span><span class="fl">5</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## </span></span>
+<span><span class="co">## RCircos.Core.Components initialized.</span></span>
+<span><span class="co">## Type ?RCircos.Reset.Plot.Parameters to see how to modify the core components.</span></span></code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Set.Plot.Area.html">RCircos.Set.Plot.Area</a></span><span class="op">(</span><span class="op">)</span>;</span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"RCircos Tick Demo"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#   Draw chromosome ideogram with ticks in 10 mb interval</span></span>
+<span><span class="fu"><a href="../reference/RCircos.Chromosome.Ideogram.Plot.html">RCircos.Chromosome.Ideogram.Plot</a></span><span class="op">(</span>tick.interval<span class="op">=</span><span class="fl">10</span><span class="op">)</span>;</span></code></pre></div>
+<p><img src="12%20Chromosome_Tick_Demo_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"R Circos Tick Demo Done ...\n\n"</span><span class="op">)</span>;</span></code></pre></div>
+<pre><code><span><span class="co">## R Circos Tick Demo Done ...</span></span></code></pre>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
