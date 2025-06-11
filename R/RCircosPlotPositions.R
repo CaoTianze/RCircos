@@ -20,7 +20,7 @@
 
 
 
-#   ========================================================================
+
 # 
 #   1.  RCircos.Set.Base.Plot.Positions()
 #
@@ -44,7 +44,7 @@ RCircos.Set.Base.Plot.Positions<-function(total.points=NULL)
 	#   If total points are not provided, calculating it from  
 	#   chromosome ideogram data and add one padding length to 
 	#	the last chromosome. 
-	#   =========================================================
+	
 	#
     if(is.null(total.points)) {
         RCircos.Cyto <- RCircos.Get.Plot.Ideogram();
@@ -55,7 +55,7 @@ RCircos.Set.Base.Plot.Positions<-function(total.points=NULL)
 
     #   x and y coordinates for a circular line with radius of 1,
     #   circumference of 2*PI, and interval of 2PI/total.points
-    #   ========================================================
+    
     #
     interval <- 2*pi/total.points;
     baseVal <- seq(0, 2*pi, interval);
@@ -64,7 +64,7 @@ RCircos.Set.Base.Plot.Positions<-function(total.points=NULL)
     coordinateY <- cos(baseVal);
 
     #   Degrees for text rotating at each point
-    #   ========================================
+    
     #
     degree <- rep(0, length(baseVal));
     mid <- round((length(baseVal)-1)/2, digits=0) + 1;
@@ -74,7 +74,7 @@ RCircos.Set.Base.Plot.Positions<-function(total.points=NULL)
     degree[(mid+1):numOfPoints] <- 270 - (baseVal[(mid+1):numOfPoints]*180/pi);
 
     #   Put the plot position data in RCircos environment
-    #   =================================================
+    
     #
     plotPostions <- data.frame(coor.x=coordinateX, coor.y=coordinateY, degree);
 
@@ -86,7 +86,7 @@ RCircos.Set.Base.Plot.Positions<-function(total.points=NULL)
 
 
 
-#   ==========================================================================
+
 # 
 #   2.  RCircos.Data.Point()
 #
@@ -114,7 +114,7 @@ RCircos.Data.Point<-function(chromosome=NULL, start.posotion=NULL)
 
     #   Which band the start position is in. The start and end position
     #   is  are not overlap.
-    #   ============================================================
+    
     #
     chromRows <- grep(paste("^", chromosome, "$", sep=""), 
                         RCircos.Cyto$Chromosome);
@@ -122,7 +122,7 @@ RCircos.Data.Point<-function(chromosome=NULL, start.posotion=NULL)
                     RCircos.Cyto$ChromEnd[chromRows] >= start.posotion)[1];
     
     #   How far from the chromosome start the point is (by units)
-    #   ==============================================================
+    
     #
     theBases <- start.posotion - RCircos.Cyto$ChromStart[chromRows[theRow]];
     theUnits  <- theBases/RCircos.Par$base.per.unit;
@@ -131,7 +131,7 @@ RCircos.Data.Point<-function(chromosome=NULL, start.posotion=NULL)
 
     #   Return the index. Arguments are validated outside of this 
     #   function so that there is no need to catch exception.
-    #   =========================================================
+    
     #
     return (round(thePoint, digits=0));
 }
@@ -139,7 +139,7 @@ RCircos.Data.Point<-function(chromosome=NULL, start.posotion=NULL)
 
 
 
-#   ========================================================================
+
 #
 #   3.  RCircos.Get.Track.Positions()
 #
@@ -158,7 +158,7 @@ RCircos.Data.Point<-function(chromosome=NULL, start.posotion=NULL)
 RCircos.Get.Track.Positions<-function(side=NULL, track.num=NULL)
 {
     #   argument validation
-    #   ===========================================================
+    
     #
     if(is.null(side) || is.null(track.num))
         stop("Missing function argument in RCircos.Track.Positions().\n")
@@ -171,7 +171,7 @@ RCircos.Get.Track.Positions<-function(side=NULL, track.num=NULL)
     oneTrack <- RCircos.Par$track.height + RCircos.Par$track.padding;
 
     #   Positions based on side
-    #   ==============================================================
+    
     #
     side <- tolower(side);
     if(side == "in") 
@@ -194,7 +194,7 @@ RCircos.Get.Track.Positions<-function(side=NULL, track.num=NULL)
     }
 
     #   The position needs to be held for the RCircos session
-    #   =====================================================
+    
     #
     return (locations=c(out.pos=outPos, in.pos=inPos));
 }
@@ -202,7 +202,7 @@ RCircos.Get.Track.Positions<-function(side=NULL, track.num=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   4.  RCircos.Validate.Track.Positions()
 #
@@ -228,7 +228,7 @@ RCircos.Validate.Track.Positions <- function(inside.pos=0, outside.pos=0,
 {
     #   Plot positions must be positive numbers, inside.pos should
     #   be always smaller than outside.pos
-    #   ==========================================================
+    
     #
     if(inside.pos <= 0 || outside.pos <= 0)
         stop("Position <= 0 in RCircos.Validate.Track.Positions().\n");
@@ -237,7 +237,7 @@ RCircos.Validate.Track.Positions <- function(inside.pos=0, outside.pos=0,
 
     #   Inside and outside position cannot overlap with chromosome 
     #   ideogram and chromosome names unless to erase the area
-    #   ==========================================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters()
     ideoPos <- RCircos.Par$chr.ideo.pos;
@@ -257,7 +257,7 @@ RCircos.Validate.Track.Positions <- function(inside.pos=0, outside.pos=0,
 
     #   make adjustments to match the first track position inside 
     #   or outside chromosome ideogram if necessary
-    #   =========================================================
+    
     #
     customizedHeight <- outside.pos - inside.pos;
 
@@ -280,7 +280,7 @@ RCircos.Validate.Track.Positions <- function(inside.pos=0, outside.pos=0,
 
 
 
-#   =========================================================================
+
 #
 #   5.  RCircos.Get.Gene.Label.Locations()
 #
@@ -322,7 +322,7 @@ RCircos.Get.Gene.Label.Locations <- function(genomic.data=NULL,
 
  
     #   Attach a new column to plot data for label locations. 
-    #   ======================================================
+    
     #
     genomic.data <- RCircos.Get.Single.Point.Positions(genomic.data, 
                             genomic.columns);
@@ -334,7 +334,7 @@ RCircos.Get.Gene.Label.Locations <- function(genomic.data=NULL,
 
     
     #   Reset label locations
-    #   ======================================================
+    
     #
     toMuchChrom <- FALSE;   
     labelData <- NULL;  
@@ -346,7 +346,7 @@ RCircos.Get.Gene.Label.Locations <- function(genomic.data=NULL,
 
         #   If there too many gene labels, remove extra 
         #   genes for best visualization
-        #   ===================================================
+        
         #
         if(length(index) > geneNameParameters[aChr, 2])
         {
@@ -361,7 +361,7 @@ RCircos.Get.Gene.Label.Locations <- function(genomic.data=NULL,
             }
         } else {
             #   modify label locations if necessary
-            #   ===========================================
+            
             #
             theChr <- genomic.data[index,];
             theChr <- theChr[order(theChr$Location),];
@@ -394,7 +394,7 @@ RCircos.Get.Gene.Label.Locations <- function(genomic.data=NULL,
     }
     
     #   The position needs to be held for the RCircos session
-    #   =====================================================
+    
     #
     return (labelData);
 }
@@ -402,7 +402,7 @@ RCircos.Get.Gene.Label.Locations <- function(genomic.data=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   6.  RCircos.Link.Line()
 #
@@ -432,26 +432,26 @@ RCircos.Link.Line <- function(line.start=NULL, line.end=NULL)
         stop("Missing function argument in RCircos.Link.Line().\n");
 
     #   Set up the points for Bezure curve
-    #   ==================================
+    
     #
     P0 <- line.start;
     P2 <- line.end;
 
     #   Calculate total number of points for the Bezier curve
-    #   =====================================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters();
     numOfBCPoint <- RCircos.Par$Bezier.point;
     t <- seq(0, 1, 1/numOfBCPoint);
 
     #   Calculate the point values for Bezuer curve
-    #   ===========================================
+    
     #
     linkX <- (1-t)^2*P0[1] + t^2*P2[1];
     linkY <- (1-t)^2*P0[2] + t^2*P2[2];
 
     #   Return the coordinates
-    #   ===========================================
+    
     #
     return (list(pos.x=linkX, pos.y=linkY));
 }
@@ -459,7 +459,7 @@ RCircos.Link.Line <- function(line.start=NULL, line.end=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   7.  RCircos.Reset.Plot.Positions()
 #
@@ -488,7 +488,7 @@ RCircos.Reset.Plot.Positions<-function(plot.positions=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   8.  RCircos.Get.Plot.Boundary()
 #
@@ -533,7 +533,7 @@ RCircos.Get.Plot.Boundary <- function(track.num=NULL, side=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   9.  RCircos.Get.Gene.Name.Plot.Parameters() 
 #
@@ -564,7 +564,7 @@ RCircos.Get.Gene.Name.Plot.Parameters <- function()
     labelWidth <- defaultWidth*sizeFactor*unitFactor*widthFactor;
     
     #   Get maximum number of labels for each chromosome. 
-    #   ======================================================
+    
     #
     cyto.chroms <- as.character(RCircos.Cyto$Chromosome);
     chromosomes <- unique(cyto.chroms);   
@@ -594,7 +594,7 @@ RCircos.Get.Gene.Name.Plot.Parameters <- function()
 
 
 
-#   =========================================================================
+
 #
 #   10.  RCircos.Get.Polygon.Height() 
 #

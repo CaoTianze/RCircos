@@ -23,7 +23,7 @@
 
 
 
-#   =========================================================================
+
 #
 #   1.  RCircos.Validate.Cyto.Info()
 #
@@ -57,7 +57,7 @@ RCircos.Validate.Cyto.Info <- function(cyto.info=NULL, chr.exclude=NULL,
         stop("Ideogram data must be in data frame.\n");
 
     #   Set standard headers for cyto.info
-    #   =============================================================
+    
     #   
     if(ncol(cyto.info) < 5) { 
         stop( paste("Cytoband data must have columns for Chromosome,",
@@ -68,7 +68,7 @@ RCircos.Validate.Cyto.Info <- function(cyto.info=NULL, chr.exclude=NULL,
                 "ChromEnd", "Band", "Stain");
 
     #   Remove rows for chromosomes to be excluded if any
-    #   =================================================
+    
     #
     if(length(chr.exclude) > 0) 
     {
@@ -81,7 +81,7 @@ RCircos.Validate.Cyto.Info <- function(cyto.info=NULL, chr.exclude=NULL,
     }
 
     #   Any ChromEnd must be greater than its ChromStart
-    #   ================================================
+    
     #
     endGTstart <- cyto.info$ChromEnd>cyto.info$ChromStart;
     if(sum(endGTstart) < length(endGTstart)) 
@@ -91,7 +91,7 @@ RCircos.Validate.Cyto.Info <- function(cyto.info=NULL, chr.exclude=NULL,
     }
 
     #   Sort the ideogram table if need.
-    #   ===============================
+    
     #
     if(is.sorted != TRUE) 
         cyto.info <- RCircos.Sort.Genomic.Data(cyto.info, is.ideo=TRUE);
@@ -99,7 +99,7 @@ RCircos.Validate.Cyto.Info <- function(cyto.info=NULL, chr.exclude=NULL,
     #   Check start and end positions for each chromosome band. The first
     #   start position for each chromosome must be 0 or 1 and all other
     #   start positions must be greater than its previous end position.
-    #   ==================================================================
+    
     #
     chromosomes <- unique(cyto.info$Chromosome);
     for(aChr in seq_len(length(chromosomes)))
@@ -114,7 +114,7 @@ RCircos.Validate.Cyto.Info <- function(cyto.info=NULL, chr.exclude=NULL,
         #   If a chromosome has more than one bands, start positions 
         #   of each band must be greater than the end position of its
         #   previous band. 
-        #   =========================================================
+        
         #
         if(length(theRow) > 1) 
         { 
@@ -129,7 +129,7 @@ RCircos.Validate.Cyto.Info <- function(cyto.info=NULL, chr.exclude=NULL,
     }
 
     #   Return the validated cyto.info 
-    #   ===============================
+    
     #
     return (cyto.info);
 }
@@ -137,7 +137,7 @@ RCircos.Validate.Cyto.Info <- function(cyto.info=NULL, chr.exclude=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   2.  RCircos.Set.Cytoband.Data()
 #
@@ -162,7 +162,7 @@ RCircos.Set.Cytoband.Data <- function(cyto.band.info=NULL)
         stop("Ideogram data must be in data frame or matrix.\n");
         
     #   Reset colors for chromosome bands. Use yellow color for unknown 
-    #   ===============================================================
+    
     #
     stain2color <- as.character(cyto.band.info$Stain);
     bandColor <- rep(colors()[652], length(stain2color));
@@ -181,7 +181,7 @@ RCircos.Set.Cytoband.Data <- function(cyto.band.info=NULL)
 
     #   Assign colors to chromosome highlight. There are total 50
     #   colors and the last 26 colors are reserved for future.
-    #   =========================================================
+    
     #
     chromColor <- c(552, 574, 645, 498, 450, 81, 26, 584, 524, 472,
             32, 57, 615, 635, 547, 254, 100, 72, 630, 589,
@@ -190,7 +190,7 @@ RCircos.Set.Cytoband.Data <- function(cyto.band.info=NULL)
     chromosomes <- unique(chrom2color);
 
     #   In case of multiple ideogram plot, recycle the colors
-    #   ======================================================
+    
     #
     numOfChrom <- length(chromosomes);
     numOfColor <- length(chromColor);
@@ -211,7 +211,7 @@ RCircos.Set.Cytoband.Data <- function(cyto.band.info=NULL)
 
     #   Total base pairs, relative length and location of each band
     #   are replaced with start point and end point in version 1.2
-    #   ===========================================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters();
 
@@ -219,7 +219,7 @@ RCircos.Set.Cytoband.Data <- function(cyto.band.info=NULL)
     chromosomeEnd   <- as.numeric(cyto.band.info$ChromEnd);
 
     #   chromosome 1
-    #   ==========================================================
+    
     #
     chromosomes <- unique(cyto.band.info$Chromosome);
     chrRows <- which(cyto.band.info$Chromosome == chromosomes[1])
@@ -231,7 +231,7 @@ RCircos.Set.Cytoband.Data <- function(cyto.band.info=NULL)
     lastEnd  <- endIndex[length(chrRows)] + RCircos.Par$chrom.paddings;
 
     #   Other chromosomes
-    #   ==========================================================
+    
     #
     for(aChr in seq_len(length(chromosomes))[-1])
     {
@@ -252,7 +252,7 @@ RCircos.Set.Cytoband.Data <- function(cyto.band.info=NULL)
     cyto.band.info["EndPoint"] <- round(endIndex, digits=0);
     
     #   Put the cyto.band.info data in RCircos environment
-    #   ==================================================
+    
     #
     RCircosEnvironment <- NULL;
     RCircosEnvironment <- get("RCircos.Env", envir=globalenv());
@@ -262,7 +262,7 @@ RCircos.Set.Cytoband.Data <- function(cyto.band.info=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   3.  RCircos.Chromosome.Ideogram.Plot()
 #
@@ -296,7 +296,7 @@ RCircos.Chromosome.Ideogram.Plot<-function(tick.interval=0)
 
 
 
-#   =========================================================================
+
 #
 #   4.  RCircos.Draw.Chromosome.Ideogram()
 #
@@ -319,7 +319,7 @@ RCircos.Draw.Chromosome.Ideogram <- function (ideo.pos=NULL, ideo.width=NULL)
     if(is.null(ideo.width)) ideo.width <- RCircos.Par$chrom.width;
     
     #   Plot outlines for each chromosome
-    #   =================================
+    
     #
     outerPos <- ideo.pos + ideo.width;
     innerPos <- ideo.pos;
@@ -329,7 +329,7 @@ RCircos.Draw.Chromosome.Ideogram <- function (ideo.pos=NULL, ideo.width=NULL)
             track.colors=rep("white", length(chromosomes)));
 
     #   Add chromosome bands (Giemsa stain positive only)
-    #   ================================================
+    
     #
     whiteBands <- which(RCircos.Cyto$BandColor == "white");
 	darkBands <- RCircos.Cyto;	
@@ -352,7 +352,7 @@ RCircos.Draw.Chromosome.Ideogram <- function (ideo.pos=NULL, ideo.width=NULL)
 
 
 
-#   ==========================================================================
+
 #
 #   5.  RCircos.Highligh.Chromosome.Ideogram()
 #
@@ -393,7 +393,7 @@ RCircos.Highligh.Chromosome.Ideogram <- function(highlight.pos=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   6.  RCircos.Label.Chromosome.Names()
 #
@@ -443,7 +443,7 @@ RCircos.Label.Chromosome.Names <- function (chr.name.pos=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   7. RCircos.Ideogram.Tick.Plot()
 #
@@ -469,7 +469,7 @@ RCircos.Ideogram.Tick.Plot <- function(tick.interval=50, track.for.ticks=3)
     #   of chromosome ideogram, ticks start at highlight position and take
     #   one track height, tick label takes three tracks, and chromosome 
     #   names use two tracks. There will be total of 6 tracks needed.
-    #   ===================================================================
+    
     #
     track.height <- RCircos.Par$track.height;
     tick.height  <- track.height*track.for.ticks;
@@ -483,7 +483,7 @@ RCircos.Ideogram.Tick.Plot <- function(tick.interval=50, track.for.ticks=3)
 
     #   Draw ticks and labels. Positions are calculated based on
     #   chromosome highlight positions
-    #   ========================================================
+    
     #
     start.pos <- RCircos.Par$highlight.pos;
     innerPos <- RCircos.Pos[, 1:2]*start.pos;
@@ -531,7 +531,7 @@ RCircos.Ideogram.Tick.Plot <- function(tick.interval=50, track.for.ticks=3)
     #   Reset plot parameters with new chromosome name position and 
     #   outside track start position. As chr.name.pos is a read-only
     #   parameter, direct work with RCircosEnvironment is needed.
-    #   =======================================================
+    
 
     old.name.pos <- RCircos.Par$chr.name.pos;
     old.out.pos  <- RCircos.Par$track.out.start
@@ -549,7 +549,7 @@ RCircos.Ideogram.Tick.Plot <- function(tick.interval=50, track.for.ticks=3)
 
 
 
-#   ==========================================================================
+
 # 
 #   8.  RCircos.Reset.Plot.Ideogram()
 #
@@ -577,7 +577,7 @@ RCircos.Reset.Plot.Ideogram <- function(chrom.ideo)
 
 
 
-#   ==========================================================================
+
 #
 #   9.  RCircos.ZoomIn.Chromosome()
 #
@@ -624,7 +624,7 @@ RCircos.ZoomIn.Chromosome <- function(ideogram=NULL, chromosome=NULL,
         stop(message(chromosome, " not found in ideogram."));
 
     #   which band will be zoomed in
-    #   ============================
+    
     #
     chromRows <- which(as.character(ideo$Chromosome)== chromosome);
     startRow <- max(which(ideo$ChromStart[chromRows] <= from));
@@ -635,7 +635,7 @@ RCircos.ZoomIn.Chromosome <- function(ideogram=NULL, chromosome=NULL,
     #   scale up the length of the bands to be zoomed. The first start row
     #   will have no change. The band after zoomed rows, if any, are also
     #   need be modified.
-    #   ===================================================================
+    
     #
     for(aRow in seq_along(zoomRows))
     {
@@ -653,7 +653,7 @@ RCircos.ZoomIn.Chromosome <- function(ideogram=NULL, chromosome=NULL,
     }
 
     #   Return zoomed ideogram data
-    #   ===========================
+    
     #
     return (ideo);
 }
@@ -661,7 +661,7 @@ RCircos.ZoomIn.Chromosome <- function(ideogram=NULL, chromosome=NULL,
 
 
 
-#   ==========================================================================
+
 # 
 #   10.  RCircos.ZoomOut.Chromosome()
 #
@@ -695,7 +695,7 @@ RCircos.ZoomOut.Chromosome <- function(zoom.out.ratio=NULL)
     spaceHalf  <- round(spaceTotal/2, digits=0);
 
     # Reset chromosome ideogram object
-    # ================================
+    
     #
     ideogram$StartPoint <- round(ideogram$StartPoint*zoom.out.ratio, digits=0);
     ideogram$EndPoint   <- round(ideogram$EndPoint*zoom.out.ratio, digits=0);
@@ -708,7 +708,7 @@ RCircos.ZoomOut.Chromosome <- function(zoom.out.ratio=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   11. RCircos.Get.Chromosome.Order()
 #
@@ -749,7 +749,7 @@ RCircos.Get.Chromosome.Order <- function(chromosomes=NULL)
 
     #   Mammalian genomes have both integer and character
     #   chromosome names with or without prefix of "chr"
-    #   =================================================
+    
     #
     if(length(totalGeneric) == length(chromosomes))
     {
@@ -786,7 +786,7 @@ RCircos.Get.Chromosome.Order <- function(chromosomes=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   12. RCircos.Pseudo.Ideogram.From.Labels()
 #
@@ -832,7 +832,7 @@ RCircos.Pseudo.Ideogram.From.Labels <- function(chromosomes=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   13. RCircos.Pseudo.Ideogram.From.Table()
 #
@@ -877,7 +877,7 @@ RCircos.Pseudo.Ideogram.From.Table <- function(plot.data=NULL,
 
     #   If band name is not defined, chromosome names must be unique
     #   and use plot.data[, 1] as band names
-    #   ============================================================
+    
     #
     if(is.null(band.col)) {
         if(length(unique(plot.data[, 1]) != totalRows))
@@ -886,7 +886,7 @@ RCircos.Pseudo.Ideogram.From.Table <- function(plot.data=NULL,
     }
 
     #   Scale pseudo genome length to default ideogram (hg19)
-    #   ====================================================
+    
     #
     defaultBasePerUnit <- RCircos.Get.Default.Base.Per.Units();
     defaultUnits <- RCircos.Get.Default.Circos.Units();
@@ -905,7 +905,7 @@ RCircos.Pseudo.Ideogram.From.Table <- function(plot.data=NULL,
 
     #   if there are more than one bands on a chromosome, start
     #   and end positions of bands should be continuous.
-    #   =================================================================
+    
     #
     chromosomes <- as.character(pseudoIdeogram$Chromosome);
     chromNames <- unique(chromosomes);
@@ -937,7 +937,7 @@ RCircos.Pseudo.Ideogram.From.Table <- function(plot.data=NULL,
 
 
 
-#    =========================================================================
+
 #
 #   14. RCircos.Validate.Genomic.Info()
 #
@@ -961,7 +961,7 @@ RCircos.Validate.Genomic.Info <- function(genomic.info=NULL)
     if(length(genomic.info) < 2) stop("Missing items in area.info.\n")
 
     #   Check out if the chromosome is in ideogram data
-    #   ===============================================
+    
     #
     RCircos.Cyto <- RCircos.Get.Plot.Ideogram();
     ideoChrom <- as.character(RCircos.Cyto$Chromosome);
@@ -971,7 +971,7 @@ RCircos.Validate.Genomic.Info <- function(genomic.info=NULL)
 
     #   Check out if the start and end position is in the
     #   chromosome boundary
-    #   ===============================================
+    
     #
     chrRows <- which(ideoChrom == chromosome)
     chrEnd   <- max(as.numeric(RCircos.Cyto$ChromEnd[chrRows]));

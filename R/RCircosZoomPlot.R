@@ -58,7 +58,7 @@
 
 
 
-#   =========================================================================
+
 #
 #   1.  RCircos.Get.Zoom.Data()
 #
@@ -111,7 +111,7 @@ RCircos.Get.Zoom.Data <- function(plot.data=NULL, name.col=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   2.  RCircos.Get.Zoom.Range()
 #
@@ -158,7 +158,7 @@ RCircos.Get.Zoom.Range <- function(zoom.data=NULL,  genomic.columns=3)
 
 
 
-#    =========================================================================
+
 #
 #   3.  RCircos.Set.Zoom.Plot.Positions()
 #
@@ -194,7 +194,7 @@ RCircos.Set.Zoom.Plot.Positions <- function(zoom.info=NULL, total.genes=11,
 
     #   Get number of points for polygon width (same as rectangle with
     #   length of track height)
-    #   ===================================================================
+    
     #
     if(fixed.width == FALSE) 
     {
@@ -219,14 +219,14 @@ RCircos.Set.Zoom.Plot.Positions <- function(zoom.info=NULL, total.genes=11,
     }  
 
     #    Default index of RCircos.Pos
-    #    ===========================================================
+    
     #
     point.index <- 1:area.points;
     area.center <- floor(area.points/2);
 
     #    Rotate the index clockwise so that its mid point is the 
     #    center of segment to be zoomed
-    #    =========================================================
+    
     #
     target.index <- RCircos.Data.Point(as.character(zoom.info[1]),
         mean(as.numeric(zoom.info[2]), as.numeric(zoom.info[2])));
@@ -234,7 +234,7 @@ RCircos.Set.Zoom.Plot.Positions <- function(zoom.info=NULL, total.genes=11,
     point.index <- point.index + distance;    
     
     #   In case of rotate the index counter-clockwise 
-    #   ============================================================
+    
     #
     zeros <- which(point.index <= 0)
     if(length(zeros)>0) 
@@ -245,7 +245,7 @@ RCircos.Set.Zoom.Plot.Positions <- function(zoom.info=NULL, total.genes=11,
 
 
 
-#   =========================================================================
+
 #
 #   4.  RCircos.Mark.Zoom.Area()
 #
@@ -306,7 +306,7 @@ RCircos.Mark.Zoom.Area <- function(zoom.range=NULL, track.num=1, zoom.pos=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   5.  RCircos.Label.Zoom.Region()
 #
@@ -351,7 +351,7 @@ RCircos.Label.Zoom.Region <- function(zoom.data=NULL, name.col=NULL,
     label.pos <- label.pos + zoom.pos[1];
 
     #   Label all gene names
-    #   ==================================================================
+    
 
     gene.names <- as.character(zoom.data[, name.col]);
     text.start   <- in.pos;
@@ -371,7 +371,7 @@ RCircos.Label.Zoom.Region <- function(zoom.data=NULL, name.col=NULL,
 
 
 
-#    =========================================================================
+
 #
 #   6.  RCircos.Plot.Zoomed.Heatmap()
 #
@@ -412,7 +412,7 @@ RCircos.Plot.Zoomed.Heatmap <- function (zoom.data=NULL, data.col=NULL,
     in.pos  <- boundary[2];
     
     #   heatmap plot for a sample in zoom-in area
-    #   ============================================================
+    
     #
     heatmap.values <- as.numeric(zoom.data[, data.col]);
     heatmap.colors <- RCircos.Get.Heatmap.Data.Colors(heatmap.values, 
@@ -436,7 +436,7 @@ RCircos.Plot.Zoomed.Heatmap <- function (zoom.data=NULL, data.col=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   7.  RCircos.Plot.Zoomed.Histogram()
 #
@@ -509,7 +509,7 @@ RCircos.Plot.Zoomed.Histogram <- function(zoom.data=NULL, data.col=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   8. RCircos.Plot.Zoomed.Gene.Connectors()
 #
@@ -593,7 +593,7 @@ RCircos.Plot.Zoomed.Gene.Connectors <- function(zoom.data=NULL, track.num=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   9.  RCircos.Plot.Zoomed.Vertical.Lines()
 #
@@ -656,7 +656,7 @@ RCircos.Plot.Zoomed.Vertical.Lines <- function(zoom.data=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   10.  RCircos.Plot.Zoomed.Continue.Lines()
 #
@@ -702,14 +702,14 @@ RCircos.Plot.Zoomed.Continue.Lines <- function(zoom.data=NULL,
     track.height <- out.pos - in.pos;
 
     #   Points (line start and end) locations
-    #   =============================================================
+    
     #
     gene.width <- floor(length(zoom.pos) / nrow(zoom.data));
     point.pos <- (1:nrow(zoom.data))*gene.width - floor(gene.width/2);
     point.pos <- RCircos.Zoom.Single.Plot.Positions(zoom.data, zoom.pos);
 
     #   Point height
-    #   =============================================================
+    
     #
     point.value <- as.numeric(zoom.data[, data.col]);
     point.height <- RCircos.Get.Data.Point.Height(point.value, 
@@ -717,13 +717,13 @@ RCircos.Plot.Zoomed.Continue.Lines <- function(zoom.data=NULL,
     point.height <- point.height + in.pos;
 
     #   line colors
-    #   ===================================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters();
     line.colors <- RCircos.Get.Plot.Colors(zoom.data, RCircos.Par$line.color); 
 
     #   Outline at zoom area
-    #   =============================================================
+    
     #
     RCircos.Pos <- RCircos.Get.Plot.Positions();
     if(outline == TRUE)
@@ -748,7 +748,7 @@ RCircos.Plot.Zoomed.Continue.Lines <- function(zoom.data=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   11. RCircos.Plot.Zoomed.Parallel.Line()
 #
@@ -789,7 +789,7 @@ RCircos.Plot.Zoomed.Parallel.Lines <- function(zoom.data=NULL, track.num=NULL,
     track.height <- out.pos - in.pos;
 
     #   Data points to link each other
-    #   ================================================
+    
     #
     line.data <- RCircos.Get.Paired.Points.Positions(zoom.data, 
                        genomic.cols, "tile");
@@ -805,14 +805,14 @@ RCircos.Plot.Zoomed.Parallel.Lines <- function(zoom.data=NULL, track.num=NULL,
     line.end   <- line.location[,2];
     
     #   Get link line colors for each pair of locations
-    #   ================================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters();
     RCircos.Pos <- RCircos.Get.Plot.Positions();
     line.colors <- RCircos.Get.Plot.Colors(line.data, RCircos.Par$line.color);
 
     #   Draw link lines for each pair of genomic positions
-    #   ==========================================
+    
     #
     if(outline == TRUE)
     { RCircos.Zoom.Area.Outline(zoom.pos, in.pos, out.pos, max(layers));}
@@ -830,7 +830,7 @@ RCircos.Plot.Zoomed.Parallel.Lines <- function(zoom.data=NULL, track.num=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   12. RCircos.Plot.Zoomed.Scatters()
 #
@@ -875,7 +875,7 @@ RCircos.Plot.Zoomed.Scatters <- function(zoom.data=NULL, data.col=NULL,
     in.pos  <- boundary[2];
 
     #   plot height inside of plot area
-    #   =============================================================
+    
     RCircos.Par <- RCircos.Get.Plot.Parameters();
     scatter.values <- as.numeric(zoom.data[, data.col]);   
     if(with.height == TRUE) {
@@ -888,7 +888,7 @@ RCircos.Plot.Zoomed.Scatters <- function(zoom.data=NULL, data.col=NULL,
     point.height <- in.pos + plot.values;
 
     #   plot size
-    #   ===========================================================
+    
     if(with.size == TRUE)
     {
         point.size <- scatter.values/(max.value-min.value)*10;
@@ -896,7 +896,7 @@ RCircos.Plot.Zoomed.Scatters <- function(zoom.data=NULL, data.col=NULL,
 
 
     #   plot colors
-    #   ===========================================================
+    
     if(by.fold>0) {
         point.colors <- rep("black", nrow(zoom.data));
         red.rows <- which(scatter.values>by.fold);
@@ -910,12 +910,12 @@ RCircos.Plot.Zoomed.Scatters <- function(zoom.data=NULL, data.col=NULL,
     }
                             
     #   Points locations
-    #   =============================================================
+    
     #
     point.pos <- RCircos.Zoom.Single.Plot.Positions(zoom.data, zoom.pos)
    
     #   Outline scatter plot at zoom area
-    #   =============================================================
+    
     #
     if(outline==TRUE) 
     {
@@ -937,7 +937,7 @@ RCircos.Plot.Zoomed.Scatters <- function(zoom.data=NULL, data.col=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   13. RCircos.Plot.Zoomed.Tiles()
 #
@@ -978,14 +978,14 @@ RCircos.Plot.Zoomed.Tiles <- function(zoom.data=NULL, track.num=NULL,
     track.height <- out.pos - in.pos;
 
     #   Get color, start and end position for each tile 
-    #   ================================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters();
     tile.colors <- RCircos.Get.Plot.Colors(zoom.data, RCircos.Par$tile.color); 
     tile.location <- RCircos.Zoom.Paired.Plot.Positions(zoom.data, zoom.pos);
 
     #   Top and bottome locations of each tile
-    #   =======================================================
+    
     #
     layer.height <- track.height/layers;
     zoomed.layers <- RCircos.Get.Plot.Layers(zoom.data, genomic.columns=3);
@@ -1012,7 +1012,7 @@ RCircos.Plot.Zoomed.Tiles <- function(zoom.data=NULL, track.num=NULL,
 
 
 
-#   ==========================================================================
+
 #
 #   14. RCircos.Plot.Zoomed.Ideogram.Ticks()
 #
@@ -1057,7 +1057,7 @@ RCircos.Plot.Zoomed.Ideogram.Ticks <- function(zoom.info=NULL, track.num=NULL,
     RCircos.Par <- RCircos.Get.Plot.Parameters();
 
     #   Tick locations from interval data width 
-    #   ========================================================
+    
     interval <- tick.interval*1000000;
     chr.start <- as.numeric(zoom.info[2]);
     chr.end   <- as.numeric(zoom.info[3]);
@@ -1114,7 +1114,7 @@ RCircos.Plot.Zoomed.Ideogram.Ticks <- function(zoom.info=NULL, track.num=NULL,
 
 
 #
-#   ==========================================================================
+
 #
 #   15. RCircos.Plot.Zoomed.Polygons()
 #
@@ -1161,14 +1161,14 @@ RCircos.Plot.Zoomed.Polygons <- function(zoom.data=NULL, data.col=4,
     track.height <- out.pos - in.pos;
 
     #   Get color, start and end position for each tile 
-    #   ================================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters();
     polygon.colors <- RCircos.Get.Plot.Colors(zoom.data, RCircos.Par$tile.color); 
     polygon.location <- RCircos.Zoom.Paired.Plot.Positions(zoom.data, zoom.pos);
 
     #   Top and bottom locations of each tile
-    #   =======================================================
+    
     #
     data.heights <- as.numeric(zoom.data[,data.col])
     if(is.null(min.value) || is.null(max.value)) {
@@ -1214,7 +1214,7 @@ RCircos.Plot.Zoomed.Polygons <- function(zoom.data=NULL, data.col=4,
 
 
 
-#   ==========================================================================
+
 #
 #   16. RCircos.Zoom.Area.Outline()
 #
@@ -1271,7 +1271,7 @@ RCircos.Zoom.Area.Outline <- function(zoom.pos=NULL, inside.pos=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   17. RCircos.Clear.Zoom.Area
 #
@@ -1319,7 +1319,7 @@ RCircos.Clear.Zoom.Area <- function(zoom.pos=NULL, track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   18. RCircos.Zoom.Single.Plot.Positions()
 #
@@ -1372,7 +1372,7 @@ RCircos.Zoom.Single.Plot.Positions <- function(zoom.data=NULL, zoom.pos=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   19. RCircos.Zoom.Paired.Plot.Positions()
 #
@@ -1443,7 +1443,7 @@ RCircos.Zoom.Paired.Plot.Positions <- function(zoom.data=NULL, zoom.pos=NULL)
 
 
 
-#   =========================================================================
+
 #
 #   20. RCircos.Plot.Zoomed.Area()
 #   Plot continuous lines from one point to next point on zoom in area
@@ -1489,13 +1489,13 @@ RCircos.Plot.Zoomed.Area <- function(zoom.data=NULL, plot.type="mountain",
     track.height <- out.pos - in.pos;
 
     #   Location of each data point
-    #   =============================================================
+    
     #
     point.pos <- RCircos.Zoom.Single.Plot.Positions(zoom.data, zoom.pos)
     area.color <- RCircos.Get.Plot.Colors(zoom.data, area.color);
 
     #   area height
-    #   =============================================================
+    
     #
     if(plot.type != "band")
     {
@@ -1531,7 +1531,7 @@ RCircos.Plot.Zoomed.Area <- function(zoom.data=NULL, plot.type="mountain",
     }
 
     #   Outline at zoom area
-    #   =============================================================
+    
     #
     RCircos.Pos <- RCircos.Get.Plot.Positions();
     if(outline == TRUE)

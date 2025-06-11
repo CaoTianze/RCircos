@@ -13,7 +13,7 @@
 
 
 
-#   ========================================================================
+
 #
 #   1.  RCircos.Initialize.Plot.Parameters()
 #
@@ -50,7 +50,7 @@ RCircos.Initialize.Plot.Parameters <- function(tracks.inside=NULL,
     #   ideogram when radius.len is 1.0. Remains are for link lines. 
     #   If there are more than four tracks, increase the radius 
     #   length for extra plot area.
-    #   ===========================================================
+    
     #
     moreInside <- tracks.inside - tracks.inside.default;
     if(moreInside > 0)
@@ -62,7 +62,7 @@ RCircos.Initialize.Plot.Parameters <- function(tracks.inside=NULL,
 
     #   If there will be data tracks outside of chromosome 
     #   ideogram, increase plot radius to get more room
-    #   ==================================================
+    
     #
     if(tracks.outside>0)
     { 
@@ -72,7 +72,7 @@ RCircos.Initialize.Plot.Parameters <- function(tracks.inside=NULL,
 
     #   Set default plot parameters to a list. Color parameters 
     #   go first then character and numeric parameters
-    #   =======================================================
+    
     #
     plot.param <- list(
     
@@ -128,7 +128,7 @@ RCircos.Initialize.Plot.Parameters <- function(tracks.inside=NULL,
     );
 
     #   Put the plot parameter in RCircos environment
-    #   ==============================================
+    
     #
     RCircosEnvironment <- NULL;
     RCircosEnvironment <- get("RCircos.Env", envir=globalenv());
@@ -138,7 +138,7 @@ RCircos.Initialize.Plot.Parameters <- function(tracks.inside=NULL,
 
 
 
-#   ========================================================================
+
 #
 #   2.  RCircos.Validate.Plot.Parameters()
 #
@@ -157,7 +157,7 @@ RCircos.Validate.Plot.Parameters <- function(parameters=NULL)
     if(is.null(parameters)) stop("Missing function argument.\n");
 
     #   No negative numeric parameters allowed
-    #   ==============================================
+    
     #
     for(aParam in seq_along(parameters))
     {
@@ -168,7 +168,7 @@ RCircos.Validate.Plot.Parameters <- function(parameters=NULL)
     }
 
     #   Check out heatmap colors
-    #   ==============================================
+    
     #
     heatmapColors <- RCircos.Get.Supported.HeatmapColors();
     if((parameters$heatmap.color %in% heatmapColors) == FALSE)
@@ -177,7 +177,7 @@ RCircos.Validate.Plot.Parameters <- function(parameters=NULL)
     }
 
     #   Check out other plot colors
-    #   ==============================================
+    
     #
     colorNames <- colors();
     if( !parameters$text.color %in% colorNames ||
@@ -188,7 +188,7 @@ RCircos.Validate.Plot.Parameters <- function(parameters=NULL)
     { stop("Unsupported R plot color defined.") }
 
     #   track background and grid line can be NULL or NA
-    #   ================================================
+    
     background <- parameters$track.background;
     if(!is.null(background) && !is.na(background)){
         if(!background  %in% colorNames)
@@ -205,7 +205,7 @@ RCircos.Validate.Plot.Parameters <- function(parameters=NULL)
 
 
 
-#   ========================================================================
+
 #
 #   3.  RCircos.Reset.Plot.Parameters()
 #
@@ -224,7 +224,7 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
 
     #   1.  If parameters related to total number of data tracks 
     #       need reset, use reset core components instead.
-    #   ==========================================================
+    
     if( new.params$radius.len != old.params$radius.len ||
         new.params$plot.radius != old.params$plot.radius ||
         new.params$chr.ideo.pos != old.params$chr.ideo.pos ||
@@ -234,7 +234,7 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
 
     #   2.  If parameters related to chromosome ideogram plot 
     #       need reset, use customized plot methods instead.
-    #   ==========================================================
+    
     if( new.params$chr.ideo.pos != old.params$chr.ideo.pos ||
         new.params$highlight.pos != old.params$highlight.pos ||
         new.params$chr.name.pos  != old.params$chr.name.pos )
@@ -243,12 +243,12 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
     #   3.  Validate the parameter values in case of multiple
     #       parameters were reset in new.params such as nemeric
     #       values and color values, and ideogram layout values.
-    #   ==========================================================
+    
     RCircos.Validate.Plot.Parameters(new.params);
 
     #   4.  Parameters related to ideogram width change.  
     #       Note: chr.ideo.pos is a read-only parameter
-    #   ========================================================
+    
     if( new.params$chrom.width != old.params$chrom.width )
     {
         differ <- new.params$chrom.width - old.params$chrom.width;
@@ -260,7 +260,7 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
     }
     
     #   5.  In case user midified track.in.start and track.out.start
-    #   ===========================================================
+    
     if(new.params$track.in.start >= new.params$chr.ideo.pos)
         new.params$track.in.start <- new.params$chr.ideo.pos - 0.05;
 
@@ -270,7 +270,7 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
 
     #   6.  Parameters related to data track layout. If reset, total
     #       tracks will be different. Just validate and give a prompt
-    #   ============================================================
+    
     if(new.params$track.padding !=  old.params$track.padding ||
             new.params$track.height != old.params$track.height )
     { 
@@ -281,7 +281,7 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
     #   7.  Adjust chromosome padding parameter with default constant
     #       if base.per.unit was rest but chrom.padding was unchanged
     #       or the new chrom.paddings is too big
-    #   =============================================================
+    
     if(old.params$base.per.unit != new.params$base.per.unit &&
         old.params$chrom.paddings == new.params$chrom.paddings )
     {
@@ -302,7 +302,7 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
     }
 
     #   Save new parameters to RCircos Environment
-    #   =====================================================
+    
     RCircosEnvironment <- NULL;
     RCircosEnvironment <- get("RCircos.Env", envir = globalenv());
     RCircosEnvironment[["RCircos.PlotPar"]] <- NULL;
@@ -311,7 +311,7 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
     #   Ideogram/band positions are binded to base.per.unit and
     #   chromosome padding so have to be reset if base.per.unit 
     #   and/or chrom.paddings are reset.
-    #   ======================================================
+    
     if(old.params$base.per.unit != new.params$base.per.unit ||
         old.params$chrom.paddings != new.params$chrom.paddings) 
     {
@@ -331,7 +331,7 @@ RCircos.Reset.Plot.Parameters <- function (new.params=NULL)
 
 
 
-#   ========================================================================
+
 #
 #   4.  RCircos.List.Plot.Parameters()
 #
@@ -399,7 +399,7 @@ RCircos.List.Plot.Parameters <- function()
 
 
     #   User friendly notice
-    #   ===========================================================
+    
     #
     message("Following are procedures to change RCircos plot parameters:\n",
         "params <- RCircos.Get.Plot.Parameters();\n",

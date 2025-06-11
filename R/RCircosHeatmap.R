@@ -10,7 +10,7 @@
 #   <RCircos><RCircos><RCircos><RCircos><RCircos><RCircos><RCircos><RCircos>
 
 
-#   ========================================================================
+
 # 
 #   1.  RCircos.Get.Heatmap.Color.Scale()
 #
@@ -39,7 +39,7 @@ RCircos.Get.Heatmap.Color.Scale <- function(heatmap.color=NULL)
     zero2one <- seq(0, 1, length=256);
 
     #   Blue, White, and Red
-    #   ==============================================
+    
     #
     if(heatmap.color=="BlueWhiteRed") {
 
@@ -48,7 +48,7 @@ RCircos.Get.Heatmap.Color.Scale <- function(heatmap.color=NULL)
         ColorRamp <- cbind(BlueRamp, RedRamp);
 
     #   Green, White, and Red
-    #   ==============================================
+    
     #
     } else if (heatmap.color=="GreenWhiteRed") {
 
@@ -57,7 +57,7 @@ RCircos.Get.Heatmap.Color.Scale <- function(heatmap.color=NULL)
         ColorRamp <- cbind(GreenRamp, RedRamp);
 
     #   Green, Yellow, and Red
-    #   ==============================================
+    
     #
     } else if (heatmap.color=="GreenYellowRed"){
 
@@ -66,7 +66,7 @@ RCircos.Get.Heatmap.Color.Scale <- function(heatmap.color=NULL)
         ColorRamp <- cbind(GreenRamp, RedRamp);
 
     #   Green, Black, and Red
-    #   ==============================================
+    
     #
     } else if (heatmap.color=="GreenBlackRed"){
 
@@ -75,14 +75,14 @@ RCircos.Get.Heatmap.Color.Scale <- function(heatmap.color=NULL)
         ColorRamp <- cbind(GreenRamp, RedRamp);
 
     #   Yellow to Red
-    #   ==============================================
+    
     #
     } else if (heatmap.color=="YellowToRed") {
     
         ColorRamp <- rgb(allOnes, one2zeor, allZeros);
 
     #   black only
-    #   ==============================================
+    
     #
     } else {
         ColorRamp <- rgb(one2zeor, one2zeor, one2zeor);
@@ -94,7 +94,7 @@ RCircos.Get.Heatmap.Color.Scale <- function(heatmap.color=NULL)
 
 
 
-#   ========================================================================
+
 #
 #   2.  RCircos.Plot.Heatmap.Color.Scale()
 #
@@ -128,7 +128,7 @@ RCircos.Plot.Heatmap.Color.Scale <- function(max.value=NULL, min.value=NULL,
     color.type="BlueWhiteRed", scale.location=1, scale.width=0, scale.height=0) 
 {
     #   Argument checking
-    #   =====================================================
+    
     #
     if(is.null(max.value) || is.null(min.value)) 
         stop("Max or Min value for color scale is missing.\n");
@@ -151,13 +151,13 @@ RCircos.Plot.Heatmap.Color.Scale <- function(max.value=NULL, min.value=NULL,
     coorX <- scaleCorr[1]; coorY <- scaleCorr[2];
 
     #   Standard color map
-    #   ==================================================
+    
     #
     colorRamp <- RCircos.Get.Heatmap.Color.Scale(color.type)
     totalRect <- nrow(colorRamp)*ncol(colorRamp)
 
     #   Plot horizontal color scale at bottom or top
-    #   ===========================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters();
     if (scale.location %in% c(1, 3)) 
@@ -182,7 +182,7 @@ RCircos.Plot.Heatmap.Color.Scale <- function(max.value=NULL, min.value=NULL,
         text(coorX+scale.width, yTop-(scale.height/2), max.value, pos=4);
 
     #   Plot vertical color scale at left or right
-    #   ===========================================
+    
     #
     } else {
         rectWidth  <- scale.height;
@@ -210,7 +210,7 @@ RCircos.Plot.Heatmap.Color.Scale <- function(max.value=NULL, min.value=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   3.  RCircos.Get.Heatmap.Data.Colors()
 #
@@ -261,7 +261,7 @@ RCircos.Get.Heatmap.Data.Colors <- function(heatmap.value=NULL,
 
 
 
-#   ===================================================================
+
 #
 #   4.  RCircos.Get.Heatmap.Color.Scale.Location()
 #

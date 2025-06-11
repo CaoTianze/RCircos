@@ -14,7 +14,7 @@
 #   <RCircos><RCircos><RCircos><RCircos><RCircos><RCircos><RCircos><RCircos>
 
 
-#   ========================================================================
+
 #
 #   1.  RCircos.Validate.Genomic.Data()
 #
@@ -44,7 +44,7 @@ RCircos.Validate.Genomic.Data <- function(genomic.data=NULL,
         stop("Incorrect number of genomic position columns defined.\n");
 
     #   Plot data has only one chromosome column and link data has two
-    #   ===============================================================
+    
     #
     plot.type <- tolower(plot.type);
     if(plot.type=="plot") { chromCol <- 1;
@@ -58,7 +58,7 @@ RCircos.Validate.Genomic.Data <- function(genomic.data=NULL,
     {
         #   Make sure chromosomes in input data are all included 
         #   in chromosome ideogram data
-        #   ====================================================
+        
         #
         theCol <- chromCol[aCol];
         dataChroms <- unique(as.character(genomic.data[, theCol]));
@@ -68,14 +68,14 @@ RCircos.Validate.Genomic.Data <- function(genomic.data=NULL,
 
         #   Make sure chromosome start and end positions in genomic
         #   data are not negative.
-        #   ==============================================
+        
         #
         if(min(genomic.data[, theCol+1]) < 0) 
         { stop("One or more chromStart position less than 0."); }
 
         #   if there are three columns for genomic positions, end
         #   position must be greater or equal to start position
-        #   ======================================================
+        
         if(genomic.columns == 3)
         { 
             if(min(genomic.data[, theCol+2]) < 0)
@@ -83,7 +83,7 @@ RCircos.Validate.Genomic.Data <- function(genomic.data=NULL,
 
             #   Make sure in genomic data all chromosome start positions 
             #   are smaller than their paired chromosome end positions
-            #   ========================================================
+            
             #
             startPos <- as.numeric(genomic.data[, theCol+1]);
             endPos <- as.numeric(genomic.data[, theCol+2]);
@@ -93,7 +93,7 @@ RCircos.Validate.Genomic.Data <- function(genomic.data=NULL,
 
         #   Make sure chromosome start and end locations in genomic
         #   data are not out of chromosome length
-        #   ========================================================
+        
         # 
         startCol <- theCol + 1;
         if(genomic.columns == 3) {
@@ -106,7 +106,7 @@ RCircos.Validate.Genomic.Data <- function(genomic.data=NULL,
             inData <- genomic.data[genomic.data[,theCol] == theChr,];
 
             #   Be careful for the cases of grep("1", "1")  and ("1", "12")
-            #   ===========================================================
+            
             #
             cytoData <- RCircos.Cyto[grep(paste(theChr, "$", sep=""), 
                                 RCircos.Cyto$Chromosome),];
@@ -124,7 +124,7 @@ RCircos.Validate.Genomic.Data <- function(genomic.data=NULL,
 
 
 
-#   ========================================================================
+
 #
 #   2.  RCircos.Get.Single.Point.Positions()
 #
@@ -159,7 +159,7 @@ RCircos.Get.Single.Point.Positions <- function(genomic.data=NULL,
 
     #   Check chromosome names, chromStart, and chromEnd positions, 
     #   if failed, function will exit here. No more processing.
-    #   ==========================================================
+    
     #
     RCircos.Validate.Genomic.Data(genomic.data, "plot", genomic.columns);
 
@@ -186,12 +186,12 @@ RCircos.Get.Single.Point.Positions <- function(genomic.data=NULL,
     genomic.data["Location"] <- dataPoints;
 
     #   Sort the data by plot position
-    #   ===============================================
+    
     #   
     genomic.data <- genomic.data[order(genomic.data$Location),];
 
     #   The data needs to be held for the RCircos session
-    #    =================================================
+    
     #
     return (genomic.data);
 }
@@ -199,7 +199,7 @@ RCircos.Get.Single.Point.Positions <- function(genomic.data=NULL,
 
 
 
-#    ========================================================================
+
 #
 #   3.  RCircos.Get.Paired.Points.Positions()
 #
@@ -287,12 +287,12 @@ RCircos.Get.Paired.Points.Positions <- function(genomic.data=NULL,
     genomic.data["LinkEnd"] <- linkEnd;
 
     #    Sort the data by plot position
-    #    ===============================================
+    
     #    
     genomic.data <- genomic.data[order(genomic.data$LinkStart),];
 
     #    The data needs to be held for the RCircos session
-    #    =================================================
+    
     #    
     return (genomic.data);
 }
@@ -300,7 +300,7 @@ RCircos.Get.Paired.Points.Positions <- function(genomic.data=NULL,
 
 
 
-#   ========================================================================
+
 #
 #   4.  RCircos.Multiple.Species.Dataset()
 #
@@ -328,13 +328,13 @@ RCircos.Get.Paired.Points.Positions <- function(genomic.data=NULL,
 RCircos.Multiple.Species.Dataset <- function(data.list, species)
 {
     #   Number of datasets and species must be same
-    #   ===========================================
+    
     #
     if(length(data.list) != length(species)) 
     { stop("Error! Number of datasets and species must be same") }
 
     #   Modify chromosome names in each dataset then combine them as one
-    #   ================================================================
+    
     #
     numOfData <- length(data.list);
     numOfColumns <- ncol(data.frame(data.list[1]));
@@ -345,7 +345,7 @@ RCircos.Multiple.Species.Dataset <- function(data.list, species)
         prefix <- species[aData];
 
         #   Number of columns of each dataset must be same
-        #   ==============================================
+        
         #
         if(ncol(dataset)!= numOfColumns) 
         { stop("Error! Datasets have different columns.") }
@@ -362,7 +362,7 @@ RCircos.Multiple.Species.Dataset <- function(data.list, species)
 
 
 
-#   =========================================================================
+
 #
 #   5.  RCircos.Sort.Genomic.Data()
 #
@@ -415,7 +415,7 @@ RCircos.Sort.Genomic.Data <- function(genomic.data=NULL, is.ideo=FALSE)
     }
 
     #   Get chromosome order
-    #   ========================================================
+    
     #
     chromosomes <- unique(genomic.data$Chromosome);
     if(length(chromosomes)>=2)
@@ -423,7 +423,7 @@ RCircos.Sort.Genomic.Data <- function(genomic.data=NULL, is.ideo=FALSE)
 
     #   Reconstruct ideogram data and sort by chromStart for 
     #   each chromosome
-    #   =====================================================
+    
     #
     rows <- which(genomic.data$Chromosome %in% chromosomes[1]);
     sortedData <- genomic.data[rows, ];
@@ -444,7 +444,7 @@ RCircos.Sort.Genomic.Data <- function(genomic.data=NULL, is.ideo=FALSE)
 
 
 
-#    =========================================================================
+
 #
 #   6.  RCircos.Get.Data.Point.Height()
 #
@@ -484,7 +484,7 @@ RCircos.Get.Data.Point.Height <- function(plot.values=NULL, min.value=NULL,
 
     #   If height.range is not defined from customized track 
     #   height, use track height for height range base.
-    #   ===================================================
+    
     #
     if(is.null(track.height)) {
         RCircos.Par <- RCircos.Get.Plot.Parameters();
@@ -492,12 +492,12 @@ RCircos.Get.Data.Point.Height <- function(plot.values=NULL, min.value=NULL,
     } 
 
     #   when plot values is between 0 and 1. No converting needed.
-    #   =========================================================
+    
     if(min(plot.values) >= 0 && max(plot.values) <= 1) {
         dataHeight <- plot.values*track.height;
 
     #   Converting plot values to ratios to track.height
-    #   ===========================================================
+    
     } else {
         if(is.null(min.value) || is.null(max.value)) {
             min.value <- min(plot.values);
@@ -525,7 +525,7 @@ RCircos.Get.Data.Point.Height <- function(plot.values=NULL, min.value=NULL,
 
 
 
-#   ===========================================================================
+
 #
 #   7.  RCircos.Get.Plot.Layers()
 #
@@ -564,7 +564,7 @@ RCircos.Get.Plot.Layers <- function(genomic.data=NULL, genomic.columns=NULL)
     {
         #   Meet a new region without overlap with previous or
         #   a different chromosome, reset relevant variables
-        #   ==================================================
+        
         #
         if (genomic.data[aRow, 2] >= theEnd ) {
             theLayer <- 1; 

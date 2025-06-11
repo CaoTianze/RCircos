@@ -14,7 +14,7 @@
 # 
 #   Last debug done on September 14, 2016
 #   Version:    RCircos v.1.2
-#   =================================================
+
 #
 #   Functions in this file:
 #
@@ -41,7 +41,7 @@
 
 
 
-#   ========================================================================
+
 #
 #   Working environment for RCircos to hold RCircos core components and other
 #   default global variables
@@ -63,7 +63,7 @@ RCircos.plotTypes <- c("link", "ribbon", "pLink", "polygon", "tile", "ideogram",
                         "points",  "connector", "ticks",  "text", "area");
 
 
-#   ========================================================================
+
 #
 #   1.  RCircos.Workflow()
 #
@@ -124,7 +124,7 @@ RCircos.Workflow <- function()
 
 
 
-#   ========================================================================
+
 #
 #   2.  RCircos.Set.Core.Components()
 #
@@ -159,19 +159,19 @@ RCircos.Set.Core.Components<-function(cyto.info=NULL, chr.exclude=NULL,
     #   Step 1. validate cyto.info for correct chromosome start and
     #   end positions of each chromosome band. The data will not be 
     #   hold for the RCircos environment
-    #   ===========================================================
+    
     #
     cytoBandData <- RCircos.Validate.Cyto.Info(cyto.info, chr.exclude)
 
     #   Step 2. Initialize RCircos core components
-    #   ===========================================
+    
     #
     RCircos.Initialize.Plot.Parameters(tracks.inside,tracks.outside);
     RCircos.Set.Cytoband.Data(cytoBandData);
     RCircos.Set.Base.Plot.Positions();
 
     #   User friendly notice.
-    #   ===============================================
+    
     #
     message("\nRCircos.Core.Components initialized.\n",
             "Type ?RCircos.Reset.Plot.Parameters to see",
@@ -181,7 +181,7 @@ RCircos.Set.Core.Components<-function(cyto.info=NULL, chr.exclude=NULL,
 
 
 
-#   ========================================================================
+
 #
 #   3 ~ 12. Methods to retrieve RCircos core components stored in RCircos 
 #           environment. No calculations in each method.
@@ -258,7 +258,7 @@ RCircos.Get.Default.Text.Size <- function()
 
 
 
-#   =========================================================================
+
 #
 #   13. RCircos.Set.Plot.Area()
 #
@@ -289,7 +289,7 @@ RCircos.Set.Plot.Area <- function(margins=0.25, ...)
 
 
 
-#   ========================================================================
+
 # 
 #   14. RCircos.Multiple.Species.Core.Components()
 #
@@ -320,7 +320,7 @@ RCircos.Multiple.Species.Core.Components <- function(cyto.info.list=NULL,
     species.list=NULL, chr.exclude=NULL, tracks.inside=10, tracks.outside=0)
 {
     #   cyto.info.list and species must have same length
-    #   ================================================
+    
     #
     if(is.null(cyto.info.list) || is.null(species.list))
         stop("Missing cyto info or species list.\n");
@@ -333,7 +333,7 @@ RCircos.Multiple.Species.Core.Components <- function(cyto.info.list=NULL,
         stop("Track.inside and track.outside cannot be negative.\n");
 
     #   Validte each chromosome ideogram data then combine them as one
-    #   ==============================================================
+    
     #
     numOfSpecies <- length(cyto.info.list);
     for(aCyto in seq_len(numOfSpecies))
@@ -352,7 +352,7 @@ RCircos.Multiple.Species.Core.Components <- function(cyto.info.list=NULL,
     }
 
     #   Initialize RCircos core components
-    #   ==================================
+    
     #
     RCircos.Initialize.Plot.Parameters(tracks.inside,tracks.outside);
     RCircos.Set.Cytoband.Data(newCytoInfo);
@@ -362,7 +362,7 @@ RCircos.Multiple.Species.Core.Components <- function(cyto.info.list=NULL,
 
 
 
-#   ========================================================================
+
 # 
 #   15. RCircos.Get.Plot.Colors()
 #
@@ -401,7 +401,7 @@ RCircos.Get.Plot.Colors <- function(plot.data=NULL, color="black")
 
 
 
-#   ========================================================================
+
 #
 #   16. RCircos.Get.Link.Colors()
 #
@@ -434,14 +434,14 @@ RCircos.Get.Link.Colors <- function(link.data, genomic.columns=3,
     blueColor <- rgb(0, 0, 1, alpha=0.5);
 
     #   Default colors
-    #   =======================================
+    
     #
     linkColors <- rep(blueColor, nrow(link.data));
 
     #   If by.chromosome is set to true, red color will be used 
     #   for links in same chromosome and blue color for links 
     #   between different chromosomes
-    #   =======================================================
+    
     #
     if(by.chromosome==TRUE) 
     {
@@ -459,7 +459,7 @@ RCircos.Get.Link.Colors <- function(link.data, genomic.columns=3,
         }
         #   If the plot color is provided in dataset, use it to
         #   replace the default one (rainbow)
-        #   ====================================================
+        
         #
         } else {
             colorCol <- grep("PlotColor", colnames(link.data));
@@ -489,7 +489,7 @@ RCircos.Get.Link.Colors <- function(link.data, genomic.columns=3,
 
 
 
-#   ========================================================================
+
 #
 #   17. RCircos.Get.Arrow.Shape()
 #

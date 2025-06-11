@@ -14,7 +14,7 @@
 
 
     #   Initialize the plot objects
-    #   ==================================================================
+    
     
     library(RCircos);
     data(UCSC.HG19.Human.CytoBandIdeogram);
@@ -29,7 +29,7 @@
 
 
     #    Zoom heatmap plot with defined track number
-    #    ================================================================
+    
 
     data(RCircos.Heatmap.Data);
     min.value <- min(as.matrix(RCircos.Heatmap.Data[,5:10]));
@@ -59,7 +59,7 @@
 
 
     #    Zoom histogram plot with defined inside.pos and outside.pos
-    #    =================================================================
+    
 
     data(RCircos.Histogram.Data);
     RCircos.Histogram.Plot(RCircos.Histogram.Data, data.col=4, 
@@ -89,7 +89,7 @@
 
 
     #   Zoom point(scatter) plot  with defined inside.pos and outside.pos
-    #   =================================================================
+    
 
     data(RCircos.Scatter.Data);
     RCircos.Scatter.Plot(RCircos.Scatter.Data, data.col=5, track.num=3,
@@ -134,7 +134,7 @@
 
 
     #   Zoomed-in gene connectors and gene labels with defined track number
-    #   ===================================================================
+    
 
     data(RCircos.Heatmap.Data);
     data.rows <- which(RCircos.Heatmap.Data$Chromosome=="chr7");
@@ -156,7 +156,7 @@
 
 
     #   Zoomed-in parallel line plot with defined in and out plot positions
-    #   ===================================================================
+    
     
     data(RCircos.Tile.Data);
     RCircos.Tile.Plot(RCircos.Tile.Data, track.num=4, side="in");
@@ -185,7 +185,7 @@
 
 
     #   Zoomed-in tile plot with defined inside and outside plot positions
-    #   ===================================================================
+    
 
     data(RCircos.Tile.Data);
     data.rows <- which(RCircos.Tile.Data$Chromosome=="chrX");
@@ -216,7 +216,7 @@
 
     #   Zoomed-in chromosome ideogram tick plot with defined 
     #   inside and outside plot positions
-    #   ===================================================================
+    
 
     zoom.range <- c("chr15", 56828384, 71672845);
     zoom.pos <- RCircos.Set.Zoom.Plot.Positions(zoom.range, total.genes=11, 
@@ -238,7 +238,7 @@
 
   
     #   Zoomed-in polygon plot with defined plot positions
-    #   ===================================================================
+    
 
     data(RCircos.Polygon.Data);
     data.col <- 4;
@@ -283,4 +283,4 @@
 
 
     #   End of RCircos.Zoom.Plot.Demo.R
-    #   =============================================================
+    

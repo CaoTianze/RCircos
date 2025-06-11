@@ -40,7 +40,7 @@
 
 
 
-#     ==========================================================================
+
 #
 #   1.  RCircos.Gene.Connector.Plot()
 #
@@ -90,7 +90,7 @@ RCircos.Gene.Connector.Plot <- function(genomic.data=NULL,
     RCircos.Par <- RCircos.Get.Plot.Parameters();
 
     #    Construct Connector data from gene name data
-    #    =======================================================
+    
     #
     geneData    <- RCircos.Get.Single.Point.Positions(genomic.data, 
                              genomic.columns);
@@ -100,7 +100,7 @@ RCircos.Gene.Connector.Plot <- function(genomic.data=NULL,
 
     #    Switch the columns of genomic location and label 
     #    location for inside or outside
-    #    =================================================
+    
     #
     if(outerPos < RCircos.Par$chr.ideo.pos) {
         genomicCol <- ncol(connectData) - 1;
@@ -112,7 +112,7 @@ RCircos.Gene.Connector.Plot <- function(genomic.data=NULL,
 
     #    Heights for the two vertical lines of connectors and
     #    the horizontal line range
-    #    ====================================================
+    
     #
     vHeight <- round((outerPos-innerPos)/10, digits=4);
     hRange <- outerPos - innerPos - 2*vHeight;
@@ -121,12 +121,12 @@ RCircos.Gene.Connector.Plot <- function(genomic.data=NULL,
     botLoc <- innerPos + vHeight;
 
     #    Connector colors
-    #    ===============================================
+    
     #
     lineColors <- RCircos.Get.Plot.Colors(labelData, RCircos.Par$text.color);
 
     #    Plot Connectors
-    #    ===============================================
+    
     #
     chroms <- unique(connectData[,1]);
     for(aChr in seq_along(chroms))
@@ -140,21 +140,21 @@ RCircos.Gene.Connector.Plot <- function(genomic.data=NULL,
             p2 <- connectData[chrRows[aPoint], labelCol];
 
             #    draw top vertical line
-            #    ======================================
+            
             #
             lines(c(RCircos.Pos[p1, 1]*outerPos, RCircos.Pos[p1,  1]*topLoc),
                     c(RCircos.Pos[p1,2]*outerPos, RCircos.Pos[p1, 2]*topLoc),
                     col=lineColors[chrRows[aPoint]]);
 
             #    draw bottom vertical line
-            #    ======================================
+            
             #
             lines(c(RCircos.Pos[p2, 1]*botLoc, RCircos.Pos[p2, 1]*innerPos),
                     c(RCircos.Pos[p2,2]*botLoc, RCircos.Pos[p2, 2]*innerPos),
                     col=lineColors[chrRows[aPoint]]);
 
             #    draw horizontal line
-            #    ======================================
+            
             #
             lines(c(RCircos.Pos[p1,  1]*topLoc, RCircos.Pos[p2, 1]*botLoc),
                     c(RCircos.Pos[p1, 2]*topLoc, RCircos.Pos[p2, 2]*botLoc),
@@ -166,7 +166,7 @@ RCircos.Gene.Connector.Plot <- function(genomic.data=NULL,
 
 
 
-#     ==========================================================================
+
 #
 #   2.  RCircos.Gene.Name.Plot()
 #
@@ -218,7 +218,7 @@ RCircos.Gene.Name.Plot <- function(gene.data=NULL, name.col=NULL,
 
     #    Convert raw data to plot data. The raw data will be validated
     #    first during the conversion
-    #    =============================================================
+    
     #
     boundary <- RCircos.Get.Plot.Boundary(track.num, side, inside.pos, 
                                 outside.pos, FALSE);   
@@ -227,7 +227,7 @@ RCircos.Gene.Name.Plot <- function(gene.data=NULL, name.col=NULL,
     gene.data <- RCircos.Get.Gene.Label.Locations(gene.data,  genomic.columns,
                             is.sorted);
     #    Label positions
-    #    =============================================================
+    
     #
     rightSide <- nrow(RCircos.Pos)/2;
     thePoints <- as.numeric(gene.data[, ncol(gene.data)]);
@@ -243,7 +243,7 @@ RCircos.Gene.Name.Plot <- function(gene.data=NULL, name.col=NULL,
     }
 
     #    Plot labels
-    #    =============================================================
+    
     #
     for(aText in seq_len(nrow(gene.data)))
     {
@@ -261,7 +261,7 @@ RCircos.Gene.Name.Plot <- function(gene.data=NULL, name.col=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   3.  RCircos.Heatmap.Plot()
 #
@@ -318,7 +318,7 @@ RCircos.Heatmap.Plot <- function(heatmap.data=NULL, data.col=NULL,
     RCircos.Par <- RCircos.Get.Plot.Parameters();
 
     #   Colors for different data values
-    #   ===========================================================
+    
     #
     colorMap <- RCircos.Get.Heatmap.Color.Scale(RCircos.Par$heatmap.color);
 
@@ -333,7 +333,7 @@ RCircos.Heatmap.Plot <- function(heatmap.data=NULL, data.col=NULL,
     #   Each heatmap cell starts from data start location and span for
     #   heatmap.width. Make sure each one will be in the range of thire 
     #   chromosome
-    #   ===============================================================
+    
     #
     heatmap.data <- RCircos.Get.Single.Point.Positions(heatmap.data, 
                                 genomic.columns);
@@ -341,7 +341,7 @@ RCircos.Heatmap.Plot <- function(heatmap.data=NULL, data.col=NULL,
                                 RCircos.Par$heatmap.width);
 
     #   outline of chromosomes. No lines inside.
-    #   ===============================================================
+    
     #
     chromosomes <- unique(as.character(RCircos.Cyto$Chromosome));
     outlineColors <- rep("white", length(chromosomes));
@@ -349,7 +349,7 @@ RCircos.Heatmap.Plot <- function(heatmap.data=NULL, data.col=NULL,
                 chrom.list=chromosomes, track.colors=outlineColors);
 
     #   Plot heatmap for each gene.
-    #   ===============================================================
+    
     #
     heatmapValues <- as.numeric(heatmap.data[, data.col]);
     for(aPoint in 1:length(heatmapValues))
@@ -371,7 +371,7 @@ RCircos.Heatmap.Plot <- function(heatmap.data=NULL, data.col=NULL,
 
 
 
-#     =========================================================================
+
 #
 #   4.  RCircos.Histogram.Plot()
 #
@@ -427,7 +427,7 @@ RCircos.Histogram.Plot <- function(hist.data=NULL, data.col=4,
 
     #    Convert raw data to plot data. The raw data will be validated
     #    first during the convertion
-    #    ============================================================
+    
     #
     hist.data <- RCircos.Get.Single.Point.Positions(hist.data,
                             genomic.columns);
@@ -435,7 +435,7 @@ RCircos.Histogram.Plot <- function(hist.data=NULL, data.col=4,
                             RCircos.Par$hist.width)
 
     #    histgram colors and height
-    #    =========================================================
+    
     #
     histColors <- RCircos.Get.Plot.Colors(hist.data, RCircos.Par$hist.color); 
 
@@ -450,7 +450,7 @@ RCircos.Histogram.Plot <- function(hist.data=NULL, data.col=4,
             max.value, plot.type="points", outerPos-innerPos);
   
     #    Draw histogram
-    #    =============================================================
+    
     #
     RCircos.Track.Outline(outerPos, innerPos, RCircos.Par$sub.tracks);
 
@@ -461,7 +461,7 @@ RCircos.Histogram.Plot <- function(hist.data=NULL, data.col=4,
         theEnd <- locations[aPoint, 2];
 
         #    Plot rectangle with specific height for each data point
-        #    =========================================================
+        
         #
         polygonX <- c(RCircos.Pos[theStart:theEnd,1]*height, 
                         RCircos.Pos[theEnd:theStart,1]*innerPos);
@@ -474,7 +474,7 @@ RCircos.Histogram.Plot <- function(hist.data=NULL, data.col=4,
 
 
 
-#     =========================================================================
+
 #
 #   5.  RCircos.Line.Plot()
 #
@@ -532,7 +532,7 @@ RCircos.Line.Plot <- function(line.data=NULL, data.col=4, track.num=NULL,
 
     #    Convert raw data to plot data. The raw data will 
     #    be validated first during the convertion
-    #    ===================================================
+    
     #
     line.data <- RCircos.Get.Single.Point.Positions(line.data,
                         genomic.columns);
@@ -549,13 +549,13 @@ RCircos.Line.Plot <- function(line.data=NULL, data.col=4, track.num=NULL,
     pointHeight <- pointHeight + innerPos;
 
     #     Line colors
-    #    ============================================================
+    
     #     
     line.colors <- RCircos.Get.Plot.Colors(line.data, RCircos.Par$line.color); 
 
     #    Start plotting. Line plot is connecting two neighbor points
     #    so no exception catch needed.
-    #    ===========================================================
+    
     #
     RCircos.Track.Outline(outerPos, innerPos, RCircos.Par$sub.tracks)
 
@@ -568,7 +568,7 @@ RCircos.Line.Plot <- function(line.data=NULL, data.col=4, track.num=NULL,
         point.two <- line.data[aPoint+1, ncol(line.data)];
 
         #    Draw lines
-        #    =====================================================
+        
         #
         lines(c(RCircos.Pos[point.one , 1]*pointHeight[aPoint],
                 RCircos.Pos[point.two , 1]*pointHeight[aPoint+1]),
@@ -581,7 +581,7 @@ RCircos.Line.Plot <- function(line.data=NULL, data.col=4, track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   6.  RCircos.Scatter.Plot()
 #
@@ -641,13 +641,13 @@ RCircos.Scatter.Plot <- function(scatter.data=NULL, data.col=4,
 
     #    Convert raw data to plot data then adjust the data value to 
     #    avoid overflow. The raw data will be validated first 
-    #    =============================================================
+    
     scatter.values <- as.numeric(scatter.data[,data.col]);
     scatter.data <- RCircos.Get.Single.Point.Positions(scatter.data,
                       genomic.columns);
 
     #   scatter colors 
-    #   =====================================================
+    
     if(by.fold>0) {
         scatter.colors <- rep("black", nrow(scatter.data));
         red.rows <- which(scatter.values>by.fold);
@@ -671,7 +671,7 @@ RCircos.Scatter.Plot <- function(scatter.data=NULL, data.col=4,
     plot.height <- innerPos + plot.values;
 
     #    Start plotting
-    #    ============================================================
+    
     RCircos.Track.Outline(outerPos, innerPos, RCircos.Par$sub.tracks)
 
     for(a.point in seq_len(nrow(scatter.data)))
@@ -687,7 +687,7 @@ RCircos.Scatter.Plot <- function(scatter.data=NULL, data.col=4,
 
 
 
-#   =========================================================================
+
 #
 #   7.  RCircos.Tile.Plot()
 #
@@ -738,14 +738,14 @@ RCircos.Tile.Plot <- function(tile.data=NULL, track.num=NULL,
 
     #   Convert raw data to plot data. The raw data will be validated
     #   first during the conversion
-    #   =============================================================
+    
     #
     tile.data <- RCircos.Get.Paired.Points.Positions(tile.data,
                 genomic.columns, plot.type="tile");
 
     #   Assign a layer number to each data point and find the maximum
     #   layer number
-    #   ============================================================
+    
     #
     tile.layers <- RCircos.Get.Plot.Layers(tile.data, genomic.columns);
     layer.height <- RCircos.Par$track.height/RCircos.Par$max.layers;
@@ -765,12 +765,12 @@ RCircos.Tile.Plot <- function(tile.data=NULL, track.num=NULL,
     { layer.height <- RCircos.Par$track.height/num.layers; }
 
     #   Tile colors
-    #   =====================
+    
     #
     tile.colors <- RCircos.Get.Plot.Colors(tile.data, RCircos.Par$tile.color); 
 
     #   Start plotting
-    #   =============================================================
+    
     #
     RCircos.Track.Outline(outerPos, innerPos, num.layers);
 
@@ -794,7 +794,7 @@ RCircos.Tile.Plot <- function(tile.data=NULL, track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   8.  RCircos.Link.Plot()
 #
@@ -848,19 +848,19 @@ RCircos.Link.Plot <- function(link.data=NULL, track.num=NULL, by.chromosome=FALS
         stop("Incorrect number of columns for genomic position.\n");
  
     #   Start and  end point for each link line
-    #   ================================================
+    
     #
     link.data <- RCircos.Get.Paired.Points.Positions(link.data, 
                     genomic.columns, plot.type="link");
 
     #   Get link line colors for each pair of locations
-    #   ================================================
+    
     # 
     link.colors <- RCircos.Get.Link.Colors(link.data, genomic.columns, 
                         by.chromosome);
 
     #   Draw link lines for each pair of locations
-    #   ==========================================
+    
     #
     RCircos.Pos <- RCircos.Get.Plot.Positions();
     base.positions <- RCircos.Pos[, 1:2]*line.start;
@@ -885,7 +885,7 @@ RCircos.Link.Plot <- function(link.data=NULL, track.num=NULL, by.chromosome=FALS
 
 
 
-#   =========================================================================
+
 # 
 #   9.  RCircos.Ribbon.Plot()
 #
@@ -935,13 +935,13 @@ RCircos.Ribbon.Plot <- function(ribbon.data=NULL, track.num=NULL,
     }
 
     #   Check chromosome names, start, and end positions
-    #   =================================================
+    
     #
     RCircos.Validate.Genomic.Data(ribbon.data, plot.type="link", 
                         genomic.columns=genomic.columns);
 
     #   Coordinates of the four conner of each ribbon (polygon)
-    #   =======================================================
+    
     #
     data.points <- matrix(rep(0, nrow(ribbon.data)*4), ncol=4);
     for(a.link in seq_len(nrow(ribbon.data)))
@@ -961,13 +961,13 @@ RCircos.Ribbon.Plot <- function(ribbon.data=NULL, track.num=NULL,
     }
 
     #   Ribbon colors
-    #   ====================================================
+    
     #
     ribbon.colors <- RCircos.Get.Link.Colors(ribbon.data, genomic.columns,
                             by.chromosome);
 
     #   Draw each ribbon (polygon)
-    #   ============================
+    
     #
     RCircos.Pos <- RCircos.Get.Plot.Positions();;
     base.positions <- RCircos.Pos*ribbon.start;
@@ -1004,7 +1004,7 @@ RCircos.Ribbon.Plot <- function(ribbon.data=NULL, track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   10. RCircos.Clear.Track()
 #
@@ -1035,7 +1035,7 @@ RCircos.Clear.Track <- function(track.num=NULL, side=NULL,
     {  stop("to.center must be either TRUE or FALSE.\n"); }
 
     #   Adjust the far position relative to chromosome ideogram
-    #   =======================================================
+    
     #
     RCircos.Pos <- RCircos.Get.Plot.Positions();
     RCircos.Par <- RCircos.Get.Plot.Parameters();
@@ -1052,7 +1052,7 @@ RCircos.Clear.Track <- function(track.num=NULL, side=NULL,
     }
 
     #   Clear all inner area including current track 
-    #   ===================================================
+    
     #
     if(to.center == TRUE)
     {
@@ -1060,7 +1060,7 @@ RCircos.Clear.Track <- function(track.num=NULL, side=NULL,
         polygon.y <- RCircos.Pos[,2]*outerPos;
 
     #   Clear current track area only
-    #   ==============================
+    
     #
     } else {
         start <- 1;  end <- nrow(RCircos.Pos);
@@ -1076,7 +1076,7 @@ RCircos.Clear.Track <- function(track.num=NULL, side=NULL,
 
 
 
-#   =========================================================================
+
 #
 #    11.    RCircos.Track.Outline()
 #
@@ -1110,14 +1110,14 @@ RCircos.Track.Outline <- function(inside.pos=NULL, outside.pos=NULL,
 
     #   Sub-track height. Note: Some times there may have 
     #   more or less subtracks than default maximum layers
-    #   ===================================================
+    
     #
     subtrack.height <- (outside.pos-inside.pos)/num.layers;
     chromosomes <- unique(as.character(RCircos.Cyto$Chromosome));
 
     #   In case one one or more but not all chromosome outlines
     #   need to be drawn
-    #   ========================================================
+    
     #
     if(!is.null(chrom.list)) { 
         if(sum(chrom.list %in% chromosomes)!= length(chrom.list))
@@ -1164,7 +1164,7 @@ RCircos.Track.Outline <- function(inside.pos=NULL, outside.pos=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   12. RCircos.Vertical.Line.Plot()
 #
@@ -1234,7 +1234,7 @@ RCircos.Vertical.Line.Plot <- function(line.data=NULL, track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   13. RCircos.Point.Plot()
 #
@@ -1293,7 +1293,7 @@ RCircos.Point.Plot <- function(point.data=NULL, data.col=4, track.num=NULL,
     RCircos.Par <- RCircos.Get.Plot.Parameters();
 
     #   Point size, color, and height from inner position of the track
-    #   ==============================================================
+    
     #
     point.values <- as.numeric(point.data[, data.col]);
     if(is.null(min.value) || is.null(max.value))
@@ -1313,7 +1313,7 @@ RCircos.Point.Plot <- function(point.data=NULL, data.col=4, track.num=NULL,
     point.color <- RCircos.Get.Plot.Colors(point.data, RCircos.Par$line.color);
 
     #   Plot each point
-    #   =================================================================
+    
     #
     RCircos.Track.Outline(outside.pos, inside.pos, num.layers=5)
     point.location <- RCircos.Get.Single.Point.Positions(point.data, 
@@ -1331,7 +1331,7 @@ RCircos.Point.Plot <- function(point.data=NULL, data.col=4, track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   14. RCircos.Parallele.Link.Plot()
 #
@@ -1381,14 +1381,14 @@ RCircos.Parallel.Line.Plot <- function(line.data=NULL, track.num=NULL,
     line.height <- layers*(track.height/max(layers)) + innerPos;
 
     #   Get link line colors for each pair of locations
-    #   ================================================
+    
     #
     RCircos.Par <- RCircos.Get.Plot.Parameters();
     RCircos.Pos <- RCircos.Get.Plot.Positions();
     line.colors <- RCircos.Get.Plot.Colors(line.data, RCircos.Par$line.color);
 
     #   Draw link lines for each pair of genomic positions
-    #   ==========================================
+    
     #
     RCircos.Track.Outline(outside.pos, inside.pos, max(layers));
     for(a.line in seq_len(nrow(line.data)))
@@ -1404,7 +1404,7 @@ RCircos.Parallel.Line.Plot <- function(line.data=NULL, track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   15. RCircos.polygons.Plot()
 #
@@ -1454,7 +1454,7 @@ RCircos.Polygon.Plot <- function(polygon.data=NULL, data.col=NULL,
         stop("Chromosome names, start and end positions are needed.\n");
 
     #   Get track position from track number or from user defined
-    #   =============================================================
+    
     #
     boundary <- RCircos.Get.Plot.Boundary(track.num, side, inside.pos, 
                                 outside.pos, FALSE);
@@ -1506,7 +1506,7 @@ RCircos.Polygon.Plot <- function(polygon.data=NULL, data.col=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   16. RCircos.Area.Highlight()
 #
@@ -1575,7 +1575,7 @@ RCircos.Area.Highlight <- function(highlight.area=NULL, track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   17. RCircos.Customized.Shape.Plot()
 #
@@ -1646,7 +1646,7 @@ RCircos.Customized.Shape.Plot <- function(shape.data=NULL,
     scale.factor <- (outerPos - innerPos);
 
     #   Rotate shape data first
-    #   ===========================================
+    
     #
     point.index <- RCircos.Data.Point(as.character(location[1]), 
                         as.numeric(location[2]));
@@ -1659,7 +1659,7 @@ RCircos.Customized.Shape.Plot <- function(shape.data=NULL,
     newY <- shapeX*sin(angle) +  shapeY*cos(angle);
 
     #   Scale and transform shape data 
-    #   ===========================================
+    
     #
     scaledX <- newX * scale.factor;
     scaledY <- newY * scale.factor;
@@ -1668,7 +1668,7 @@ RCircos.Customized.Shape.Plot <- function(shape.data=NULL,
     polygonY <- scaledY + RCircos.Pos[point.index, 2] * center;
 
     #   Plot the shape 
-    #   ===========================================
+    
     #
     polygon(polygonX, polygonY, col=shape.color);
 }
@@ -1676,7 +1676,7 @@ RCircos.Customized.Shape.Plot <- function(shape.data=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   18. RCircos.Get.Start.End.Locations()
 #
@@ -1734,7 +1734,7 @@ RCircos.Get.Start.End.Locations <- function(plot.data, plot.width)
 
 
 
-#   =========================================================================
+
 #
 #   19. RCircos.Adjust.Scatter.Values()
 #
@@ -1786,7 +1786,7 @@ RCircos.Adjust.Scatter.Values <- function(scatter.values=NULL, min.value=NULL,
 
 
 
-#   =========================================================================
+
 #
 #   20.     RCircos.Area.plot()
 #
@@ -1860,7 +1860,7 @@ RCircos.Area.Plot <- function(area.data=NULL, data.col=c(4,5), track.num=NULL,
     RCircos.Par <- RCircos.Get.Plot.Parameters();
 
     #   height of area top and area bottom inside a data track
-    #   ==============================================================
+    
     #
     area.values <- as.matrix(area.data[, data.col]);
     if(is.null(min.value) || is.null(max.value))
@@ -1900,13 +1900,13 @@ RCircos.Area.Plot <- function(area.data=NULL, data.col=c(4,5), track.num=NULL,
     }
 
     #   Location of each data point
-    #   ==========================================================
+    
     point.location <- RCircos.Get.Single.Point.Positions(area.data, 
                         genomic.columns);
     area.color <- RCircos.Get.Plot.Colors(area.data, area.color);
     
     #   Plot area by chromosome
-    #   =================================================================
+    
     #
     RCircos.Track.Outline(outside.pos, inside.pos, num.layers=5)
     chromosomes <- unique(area.data[,1])
@@ -1928,7 +1928,7 @@ RCircos.Area.Plot <- function(area.data=NULL, data.col=c(4,5), track.num=NULL,
 
 
 
-#   =========================================================================
+
 #
 #'		21.		RCircos.Customized.Connection.Plot()
 #'
