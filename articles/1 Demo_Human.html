@@ -97,28 +97,21 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load RCircos package</span></span>
 <span></span>
-<span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/caotianze/RCircos" class="external-link">RCircos</a></span><span class="op">)</span>;</span>
 <span></span>
-<span></span>
 <span><span class="co"># Load human cytoband data</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">UCSC.HG19.Human.CytoBandIdeogram</span><span class="op">)</span>;</span>
 <span><span class="va">hg19.cyto</span> <span class="op">&lt;-</span> <span class="va">UCSC.HG19.Human.CytoBandIdeogram</span>;</span>
 <span></span>
-<span></span>
 <span><span class="co"># Setup RCircos core components:</span></span>
 <span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/RCircos.Set.Core.Components.html">RCircos.Set.Core.Components</a></span><span class="op">(</span>cyto.info<span class="op">=</span><span class="va">hg19.cyto</span>, chr.exclude<span class="op">=</span><span class="cn">NULL</span>,</span>
-<span>                tracks.inside<span class="op">=</span><span class="fl">10</span>, tracks.outside<span class="op">=</span><span class="fl">0</span><span class="op">)</span>;</span></code></pre></div>
+<span><span class="fu"><a href="../reference/RCircos.Set.Core.Components.html">RCircos.Set.Core.Components</a></span><span class="op">(</span>cyto.info<span class="op">=</span><span class="va">hg19.cyto</span>, chr.exclude<span class="op">=</span><span class="cn">NULL</span>, tracks.inside<span class="op">=</span><span class="fl">10</span>, tracks.outside<span class="op">=</span><span class="fl">0</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## </span></span>
 <span><span class="co">## RCircos.Core.Components initialized.</span></span>
 <span><span class="co">## Type ?RCircos.Reset.Plot.Parameters to see how to modify the core components.</span></span></code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Open the graphic device (here a pdf file)</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Open graphic device and start plot ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Open graphic device and start plot ...</span></span></code></pre>
@@ -126,72 +119,56 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Set.Plot.Area.html">RCircos.Set.Plot.Area</a></span><span class="op">(</span><span class="op">)</span>;</span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"RCircos 2D Track Plot with Human Genome"</span><span class="op">)</span>;</span>
 <span></span>
-<span></span>
 <span><span class="co"># Draw chromosome ideogram</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Draw chromosome ideogram ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Draw chromosome ideogram ...</span></span></code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Chromosome.Ideogram.Plot.html">RCircos.Chromosome.Ideogram.Plot</a></span><span class="op">(</span><span class="op">)</span>;</span>
 <span></span>
-<span></span>
 <span><span class="co"># Connectors in first track and gene names in the second track.</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Add Gene and connector tracks ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Add Gene and connector tracks ...</span></span></code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">RCircos.Gene.Label.Data</span><span class="op">)</span>;</span>
 <span></span>
-<span><span class="fu"><a href="../reference/RCircos.Gene.Connector.Plot.html">RCircos.Gene.Connector.Plot</a></span><span class="op">(</span>genomic.data<span class="op">=</span><span class="va">RCircos.Gene.Label.Data</span>, </span>
-<span>                track.num<span class="op">=</span><span class="fl">1</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span></code></pre></div>
+<span><span class="fu"><a href="../reference/RCircos.Gene.Connector.Plot.html">RCircos.Gene.Connector.Plot</a></span><span class="op">(</span>genomic.data<span class="op">=</span><span class="va">RCircos.Gene.Label.Data</span>, track.num<span class="op">=</span><span class="fl">1</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Not all labels will be plotted.</span></span></code></pre>
 <pre><code><span><span class="co">## Type RCircos.Get.Gene.Name.Plot.Parameters()</span></span></code></pre>
 <pre><code><span><span class="co">## to see the number of labels for each chromosome.</span></span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Gene.Name.Plot.html">RCircos.Gene.Name.Plot</a></span><span class="op">(</span>gene.data<span class="op">=</span><span class="va">RCircos.Gene.Label.Data</span>, name.col<span class="op">=</span><span class="fl">4</span>, </span>
-<span>                track.num<span class="op">=</span><span class="fl">2</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/RCircos.Gene.Name.Plot.html">RCircos.Gene.Name.Plot</a></span><span class="op">(</span>gene.data<span class="op">=</span><span class="va">RCircos.Gene.Label.Data</span>, name.col<span class="op">=</span><span class="fl">4</span>,  track.num<span class="op">=</span><span class="fl">2</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Not all labels will be plotted.</span></span></code></pre>
 <pre><code><span><span class="co">## Type RCircos.Get.Gene.Name.Plot.Parameters()</span></span></code></pre>
 <pre><code><span><span class="co">## to see the number of labels for each chromosome.</span></span></code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Heatmap plot. Since some gene names plotted above are longer than one track height, we skip two tracks</span></span>
 <span></span>
-<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Add heatmap track ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Add heatmap track ...</span></span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">RCircos.Heatmap.Data</span><span class="op">)</span>;</span>
-<span><span class="fu"><a href="../reference/RCircos.Heatmap.Plot.html">RCircos.Heatmap.Plot</a></span><span class="op">(</span>heatmap.data<span class="op">=</span><span class="va">RCircos.Heatmap.Data</span>, data.col<span class="op">=</span><span class="fl">6</span>, </span>
-<span>                track.num<span class="op">=</span><span class="fl">5</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span>
-<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Heatmap.Plot.html">RCircos.Heatmap.Plot</a></span><span class="op">(</span>heatmap.data<span class="op">=</span><span class="va">RCircos.Heatmap.Data</span>, data.col<span class="op">=</span><span class="fl">6</span>, track.num<span class="op">=</span><span class="fl">5</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span>
 <span></span>
 <span><span class="co"># Scatterplot. Note: There is no prefix of "chr" in chromosome names of RCircos.Scatter.Data</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Add scatterplot track ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Add scatterplot track ...</span></span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">RCircos.Scatter.Data</span><span class="op">)</span>;</span>
-<span><span class="fu"><a href="../reference/RCircos.Scatter.Plot.html">RCircos.Scatter.Plot</a></span><span class="op">(</span>scatter.data<span class="op">=</span><span class="va">RCircos.Scatter.Data</span>, data.col<span class="op">=</span><span class="fl">5</span>, </span>
-<span>                track.num<span class="op">=</span><span class="fl">6</span>, side<span class="op">=</span><span class="st">"in"</span>, by.fold<span class="op">=</span><span class="fl">1</span><span class="op">)</span>;</span>
-<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Scatter.Plot.html">RCircos.Scatter.Plot</a></span><span class="op">(</span>scatter.data<span class="op">=</span><span class="va">RCircos.Scatter.Data</span>, data.col<span class="op">=</span><span class="fl">5</span>, track.num<span class="op">=</span><span class="fl">6</span>, side<span class="op">=</span><span class="st">"in"</span>, by.fold<span class="op">=</span><span class="fl">1</span><span class="op">)</span>;</span>
 <span></span>
 <span><span class="co"># Line plot. Note: There is no prefix of "chr" in chromosome names of RCircos.Line.Data</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Add line plot track ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Add line plot track ...</span></span></code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">RCircos.Line.Data</span><span class="op">)</span>;</span>
 <span><span class="va">RCircos.Line.Data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>, <span class="va">RCircos.Line.Data</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/RCircos.Line.Plot.html">RCircos.Line.Plot</a></span><span class="op">(</span>line.data<span class="op">=</span><span class="va">RCircos.Line.Data</span>, data.col<span class="op">=</span><span class="fl">5</span>, </span>
-<span>             track.num<span class="op">=</span><span class="fl">7</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span>
-<span></span>
+<span><span class="fu"><a href="../reference/RCircos.Line.Plot.html">RCircos.Line.Plot</a></span><span class="op">(</span>line.data<span class="op">=</span><span class="va">RCircos.Line.Data</span>, data.col<span class="op">=</span><span class="fl">5</span>, track.num<span class="op">=</span><span class="fl">7</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span>
 <span></span>
 <span><span class="co"># Histogram plot</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Add histogram track ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Add histogram track ...</span></span></code></pre>
@@ -200,9 +177,7 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 <span><span class="fu"><a href="../reference/RCircos.Histogram.Plot.html">RCircos.Histogram.Plot</a></span><span class="op">(</span>hist.data<span class="op">=</span><span class="va">RCircos.Histogram.Data</span>, data.col<span class="op">=</span><span class="fl">4</span>, </span>
 <span>             track.num<span class="op">=</span><span class="fl">8</span>, side<span class="op">=</span><span class="st">"in"</span><span class="op">)</span>;</span>
 <span></span>
-<span></span>
 <span><span class="co"># Tile plot. Note: tile plot data have chromosome locations and each data file is for one track</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Add tile track ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Add tile track ...</span></span></code></pre>
@@ -213,7 +188,6 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Link lines. Link data has only paired chromosome locations in each row and link lines are always drawn inside of chromosome ideogram.</span></span>
 <span></span>
-<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Add link track ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Add link track ...</span></span></code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
@@ -221,9 +195,7 @@ Hongen Zhang  Reviser: Tianze Cao</p>
 <span><span class="fu"><a href="../reference/RCircos.Link.Plot.html">RCircos.Link.Plot</a></span><span class="op">(</span>link.data<span class="op">=</span><span class="va">RCircos.Link.Data</span>, track.num<span class="op">=</span><span class="fl">11</span>, </span>
 <span>             by.chromosome<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>;</span>
 <span></span>
-<span></span>
 <span><span class="co"># Add ribbon link to the center of plot area (link lines).</span></span>
-<span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">message</a></span><span class="op">(</span><span class="st">"Add ribbons to link track ...\n"</span><span class="op">)</span>;</span></code></pre></div>
 <pre><code><span><span class="co">## Add ribbons to link track ...</span></span></code></pre>
