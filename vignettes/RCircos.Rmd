@@ -82,14 +82,14 @@ data(RCircos.Link.Data)
 head(RCircos.Link.Data)
 ```
 
-Note: RCircos will convert the input data to RCircos plot data but it does not provide functionality for general data processing. If the data frame does not have genomic position information, you have to add the information to the data frame before passing it to RCircos functions. Sample datasets are included in the package for demo purpose and they could be easily explored with data() method.\
-\
+Note: RCircos will convert the input data to RCircos plot data but it does not provide functionality for general data processing. If the data frame does not have genomic position information, you have to add the information to the data frame before passing it to RCircos functions. Sample datasets are included in the package for demo purpose and they could be easily explored with data() method.
+
 Starting from version 1.1.2, user can append to input data a column of plot color names with header of "PlotColor" to control the colors for each data point except of heatmap plot.\
 
 ## Plot Track Layout
 
-RCircos follows the same algorithm of Circos plot and arranges data plots in tracks. A track could be placed either inside or outside of chromosome ideogram and the detailed position for a track could be easily manipulated by changing of the track width and track numbers.\
-\
+RCircos follows the same algorithm of Circos plot and arranges data plots in tracks. A track could be placed either inside or outside of chromosome ideogram and the detailed position for a track could be easily manipulated by changing of the track width and track numbers.
+
 The figure below shows a human chromosome ideogram plus three empty tracks arranged in both inside and outside of chromosome ideogram.
 
 ![graphic without alt text](RCircosLayoutDemo.png){width="100%"}
@@ -268,7 +268,7 @@ RCircos plot parameters
 
     track.background
 
-    :   Color of track background, default: wheat
+    :   Color of track background, default: white
 
     grid.line.color
 

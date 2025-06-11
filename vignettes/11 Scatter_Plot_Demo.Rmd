@@ -43,7 +43,7 @@ cyto.info <- UCSC.HG19.Human.CytoBandIdeogram;
 
 #   Setup RCircos core components:
 
-RCircos.Set.Core.Components(cyto.info, NULL, 10, 0);
+RCircos.Set.Core.Components(cyto.info, NULL, 1, 0);
 
 RCircos.Set.Plot.Area();
 
@@ -56,14 +56,10 @@ title("RCircos Scatter Plot Demo");
 
 scatter.data <- RCircos.Scatter.Data;
 scatter.colors <- rep("cyan", nrow(scatter.data));
-scatter.colors[which(scatter.data$seg.mean>=2)] <- "red";
-scatter.colors[which(scatter.data$seg.mean<=-2)] <- "blue";
+scatter.colors[which(scatter.data$seg.mean>=1)] <- "green";
+scatter.colors[which(scatter.data$seg.mean<=1)] <- "blue";
 scatter.data["PlotColor"] <- scatter.colors;
 
-data.col <- 5;
-track.num <- 6; 
-RCircos.Scatter.Plot(scatter.data, data.col, track.num, "in", 1);
-
-message("RCircos Scatter Plot Demo Done!");
+RCircos.Scatter.Plot(scatter.data, data.col = 5, track.num = 1, "in");
 
 ```

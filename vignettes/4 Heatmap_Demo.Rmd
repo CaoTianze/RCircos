@@ -39,8 +39,6 @@ cyto.info <- UCSC.HG19.Human.CytoBandIdeogram;
 
 RCircos.Set.Core.Components(cyto.info, NULL, 5, 0);
 
-#   Open the graphic device (here a pdf file)
-
 RCircos.Set.Plot.Area();
 
 #   Draw chromosome ideogram
@@ -60,6 +58,4 @@ for(a.track in 1:total.track)
 }
 
 #   Close the graphic device
-
-message("RCircos Heatmap demo done!\n");
 ```

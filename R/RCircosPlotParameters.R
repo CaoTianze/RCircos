@@ -120,7 +120,7 @@ RCircos.Initialize.Plot.Parameters <- function(tracks.inside=NULL,
         line.color="black",
         scatter.color="black",
         tile.color="black",
-        track.background="wheat",
+        track.background="white",
         grid.line.color="gray",
 
         heatmap.color="BlueWhiteRed",
