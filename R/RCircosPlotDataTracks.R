@@ -1129,7 +1129,7 @@ RCircos.Track.Outline <- function(inside.pos=NULL, outside.pos=NULL,
     } 
 
     if(is.null(track.colors)) {
-        track.colors <- rep(RCircos.Par$track.background, length(chromosomes))
+        track.colors <- rep(NA, length(chromosomes))
     } else {
         if(length(track.colors) != length(chromosomes))
             track.colors <- rep(track.colors, length(chromosomes));

@@ -390,6 +390,7 @@ RCircos.Scatter.Plot(RCircos.Scatter.Data, data.col,
 
 ```{r eval=FALSE}
 data(RCircos.Line.Data);
+RCircos.Line.Data$chromosome=paste0("chr",RCircos.Line.Data$chromosome)
 data.col <- 5;
 track.num <- 7;
 side <- "in";

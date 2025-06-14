@@ -325,8 +325,7 @@ RCircos.Draw.Chromosome.Ideogram <- function (ideo.pos=NULL, ideo.width=NULL)
     innerPos <- ideo.pos;
 
     chromosomes <- unique(RCircos.Cyto$Chromosome);
-    RCircos.Track.Outline(outerPos, innerPos, num.layers=1, chromosomes,
-            track.colors=rep("white", length(chromosomes)));
+    RCircos.Track.Outline(outerPos, innerPos, num.layers=1, chromosomes);
 
     #   Add chromosome bands (Giemsa stain positive only)
     
